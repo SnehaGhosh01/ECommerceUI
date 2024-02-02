@@ -113,10 +113,7 @@ export class SearchComponent {
   handleEnterKey(event: Event): void {
   if (event instanceof KeyboardEvent && event.key === 'Enter') {
     // Check if any option is selected, if not, redirect to products
-    if (!this.searchResults.find(result => result.productName === this.searchQuery)) {
-      // Redirect to the product list based on the current search query
-      this.router.navigate(['/products'], { queryParams: { search: this.searchQuery } });
-    }
+    this.router.navigate(['/products'], { queryParams: { search: this.searchQuery } });
   }
 }
 }

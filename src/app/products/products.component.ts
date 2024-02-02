@@ -21,20 +21,40 @@ export class ProductsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Subscribe to route changes
     this.activatedRoute.queryParams.subscribe((params: any) => {
-      let category = params.category;
-      let subcategory = params.subcategory;
-      
-      if (category && subcategory)
-        this.navigationService
-          .getProducts(category, subcategory, 10)
-          .subscribe((res: any) => {
-            this.products = res;
-          });
+      // Check if there is a search query
+      const searchQuery = params.search;
+      if (searchQuery) {
+        // Fetch products based on search query
+        this.fetchProductsBySearch(searchQuery);
+      } else {
+        // Fetch products based on category/subcategory
+        const category = params.category;
+        const subcategory = params.subcategory;
+        if (category && subcategory) {
+          this.fetchProductsByCategory(category, subcategory);
+        }
+      }
     });
   }
 
-  sortByPrice(sortKey: string) {
+  // Function to fetch products based on search query
+  private fetchProductsBySearch(searchQuery: string): void {
+    this.navigationService.getSerachedProducts(searchQuery).subscribe((res: any) => {
+      this.products = res;
+    });
+  }
+
+  // Function to fetch products based on category/subcategory
+  private fetchProductsByCategory(category: string, subcategory: string): void {
+    this.navigationService.getProducts(category, subcategory, 10).subscribe((res: any) => {
+      this.products = res;
+    });
+  }
+
+  // Function to handle sorting by price
+  sortByPrice(sortKey: string): void {
     this.products.sort((a, b) => {
       if (sortKey === 'default') {
         return a.productId > b.productId ? 1 : -1;
