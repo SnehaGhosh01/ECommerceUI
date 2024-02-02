@@ -1,0 +1,12 @@
+:host {
+    display: block;
+    height: 4rem;
+    width: 100%;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    z-index: 20;
+}
+.btn-toolbar btn-group btn-group-lg me-3 btn btn-outline-light{
+    color: black;
+}

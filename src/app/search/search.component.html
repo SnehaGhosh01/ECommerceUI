@@ -1,0 +1,21 @@
+<!-- search.component.html -->
+
+<!-- search.component.html -->
+
+<div class="search-bar">
+  <mat-form-field class="example-full-width">
+    <input
+  matInput
+  placeholder="Search"
+  [(ngModel)]="searchQuery"
+  [matAutocomplete]="auto"
+  (input)="search()"
+  (keydown.enter)="handleEnterKey($event)"
+/>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="optionSelected($event)">
+      <mat-option *ngFor="let result of searchResults" [value]="result">
+        {{ result.productName }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>

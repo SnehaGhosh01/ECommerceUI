@@ -1,0 +1,27 @@
+.search-bar{
+    background-color: bg-dark;
+    color: white;
+    
+}
+mat-form-field {
+    width: 542px !important; /* Set the desired width */
+    height: 59px !important;
+  }
+.mat-input-element {
+    color:black; /* Change the text color */
+    background-color: #fff; /* Change the background color */
+    border-radius: 8px; /* Add border-radius for rounded corners */
+    border: 0px solid #ccc; /* Add border */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    height: 30px;
+  }
+ 
+  .mat-form-field.mat-focused .mat-form-field-underline {
+    background-color: #007bff; /* Line color when focused */
+  }
+ 
+  
+  /* Style the placeholder text */
+  ::placeholder {
+    color: #131212; /* Placeholder text color */
+  }
