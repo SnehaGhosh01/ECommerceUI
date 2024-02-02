@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs';
+
 import {
   Category,
   Order,
@@ -43,7 +44,18 @@ export class NavigationService {
         .set('count', count),
     });
   }
-
+  updateProfile(userId: string, updatedProfile: any) {
+    const url = `${this.baseurl2}Auth/ProfileEdit`;
+    const params = new HttpParams().set('userId', userId);
+    return this.http.put(url, updatedProfile, { params });
+  }
+  getAccountDetails(id:string){
+    
+    const url = `${this.baseurl2}Auth/ProfileView`;  // Adjust the endpoint according to your API
+    const params = new HttpParams().set('userId', id);
+    // Now you can make the HTTP request with userId included as a query parameter
+    return this.http.get(url, { params });
+  }
   getProduct(id: string) {
     let url = this.baseurl2 + 'Product/' + id;
     return this.http.get(url);

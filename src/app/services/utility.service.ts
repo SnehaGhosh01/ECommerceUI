@@ -22,7 +22,15 @@ export class UtilityService {
 
   // JWT Helper Service : npm install @auth0/angular-jwt
 
+getUserIdFromLocalStorage() {
+  let userString=localStorage.getItem('user');
+  if(userString!=null){
+    return JSON.parse(userString).userId;
+  }
+ 
+}
   getUser(): User {
+    //let id=this.getUserIdFromLocalStorage();
     let token = this.jwt.decodeToken();
     let user: User = {
       id: token.id,
@@ -38,7 +46,7 @@ export class UtilityService {
     return user;
   }
 
-  setUser(token: string) {
+  setUser(token: any) {
     localStorage.setItem('user', token);
   }
 

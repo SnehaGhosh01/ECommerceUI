@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   message = '';
- 
+
   constructor(
     private fb: FormBuilder,
     private navigationService: NavigationService,
@@ -44,13 +44,10 @@ export class LoginComponent implements OnInit {
       .loginUser(this.Email.value, this.PWD.value)
       .subscribe((res: any) => {
         if (res.toString() !== 'invalid') {
-
           this.message = 'Logged In Successfully.';
-          this.utilityService.setUser(res.toString());
+          this.utilityService.setUser(res);
           console.log(this.utilityService.getUser());
-          
-          this.router.navigate(['/home']);
-        
+          console.log(res);
         } else {
           this.message = 'Invalid Credentials!';
         }
