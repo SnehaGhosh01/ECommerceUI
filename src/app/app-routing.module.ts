@@ -7,6 +7,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductsComponent } from './products/products.component';
 import { SearchComponent } from './search/search.component';
+import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -14,9 +15,12 @@ const routes: Routes = [
   { path: 'product-details', component: ProductDetailsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'orders', component: OrderComponent },
+  { path: 'search', component: SearchComponent },
+  { path: 'account', component: AccountComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
-  { path: 'search', component: SearchComponent }
+  
+  
 ];
 
 @NgModule({

@@ -12,6 +12,7 @@
   (input)="search()"
   (keydown.enter)="handleEnterKey($event)"
 />
+
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="optionSelected($event)">
       <mat-option *ngFor="let result of searchResults" [value]="result">
         {{ result.productName }}

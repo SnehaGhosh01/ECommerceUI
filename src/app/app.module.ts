@@ -27,6 +27,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { AccountComponent } from './account/account.component';
+import { EWalletComponent } from './e-wallet/e-wallet.component';
 
 
 @NgModule({
@@ -47,6 +49,8 @@ import { MatIconModule } from '@angular/material/icon';
     RegisterComponent,
     LoginComponent,
     SearchComponent,
+    AccountComponent,
+    EWalletComponent,
 
   ],
   imports: [

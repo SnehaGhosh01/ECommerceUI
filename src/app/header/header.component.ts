@@ -11,6 +11,7 @@ import { Category, NavigationItem } from '../models/models';
 import { RegisterComponent } from '../register/register.component';
 import { NavigationService } from '../services/navigation.service';
 import { UtilityService } from '../services/utility.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,7 @@ import { UtilityService } from '../services/utility.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  accountDetails: any;
   @ViewChild('modalTitle') modalTitle!: ElementRef;
   @ViewChild('container', { read: ViewContainerRef, static: true })
   container!: ViewContainerRef;
@@ -26,7 +28,7 @@ export class HeaderComponent implements OnInit {
   navigationList: NavigationItem[] = [];
   constructor(
     private navigationService: NavigationService,
-    public utilityService: UtilityService
+    public utilityService: UtilityService, private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -63,7 +65,7 @@ export class HeaderComponent implements OnInit {
       else this.cartItems += parseInt(res);
     });
   }
-
+ 
   openModal(name: string) {
     this.container.clear();
 
