@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'product-details/:id', component: ProductDetailsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'orders', component: OrderComponent },
+  { path: 'orders/:orderId', component: OrderComponent },
   { path: 'search', component: SearchComponent },
   { path: 'account', component: AccountComponent },
   { path: 'ewallet', component: EWalletComponent },
