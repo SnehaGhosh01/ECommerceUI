@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 import {
   Category,
   Order,
   Payment,
   PaymentMethod,
+  ShoppingCartItem,
   User,
   UserRegistration,
 } from '../models/models';
@@ -60,6 +61,30 @@ export class NavigationService {
     let url = this.baseurl2 + 'Product/' + id;
     return this.http.get(url);
   }
+  registerForEWallet(userId: string, registrationData: any) {
+    const url = `${this.baseurl2}EWallet/Register?userId=${userId}`;
+    return this.http.post(url, registrationData, { responseType: 'text' });
+  }
+
+  rechargeEWallet(userId: string, rechargeData: any) {
+    const url = `${this.baseurl2}EWallet/RechargeWallet?userId=${userId}`;
+    return this.http.put(url, rechargeData, { responseType: 'text' });
+  }
+
+  changeEWalletPassword(userId: string, passwordChangeData: any) {
+    const url = `${this.baseurl2}EWallet/ChangePassword?userId=${userId}`;
+    return this.http.put(url, passwordChangeData, { responseType: 'text' });
+  }
+
+  forgetEWalletPassword(userId: string, forgetPasswordData: any) {
+    const url = `${this.baseurl2}EWallet/ForgetPassword?userId=${userId}`;
+    return this.http.put(url, forgetPasswordData, { responseType: 'text' });
+  }
+
+  checkEWalletBalance(userId: string) {
+    const url = `${this.baseurl2}EWallet/CheckBalance?userId=${userId}`;
+    return this.http.get(url, { responseType: 'text' });
+  }
   getSerachedProducts(name:string){
     const params = new HttpParams().set('name', name);
   const url = `${this.baseurl2}Product/SearchByProductName`;
@@ -100,10 +125,41 @@ export class NavigationService {
     return this.http.get(url);
   }
 
-  addToCart(userid: number, productid: string) {
-    let url = this.baseurl + 'InsertCartItem/' + userid + '/' + productid;
-    return this.http.post(url, null, { responseType: 'text' });
+  getAllCartItems(userId: string): Observable<ShoppingCartItem[]> {
+    const url = `${this.baseurl2}ShoppingCart?userId=${userId}`;
+    return this.http.get<ShoppingCartItem[]>(url);
   }
+
+  addToCart(userId: string, productId: string): Observable<any> {
+    const url = `${this.baseurl2}ShoppingCart/${productId}?userId=${userId}`;
+    return this.http.post(url, null);
+  }
+
+  deleteCartItem(userId: string, productId: string): Observable<any> {
+    const url = `${this.baseurl2}ShoppingCart/${productId}?userId=${userId}`;
+    return this.http.delete(url);
+  }
+
+  updateItemCountPlus(userId: string, productId: string): Observable<any> {
+    const url = `${this.baseurl2}ShoppingCart/IncreaseCountByone/${productId}?userId=${userId}`;
+    return this.http.put(url, null);
+  }
+
+  updateItemCountMinus(userId: string, productId: string): Observable<any> {
+    const url = `${this.baseurl2}ShoppingCart/decreaseCountByone/${productId}?userId=${userId}`;
+    return this.http.put(url, null);
+  }
+
+  getCartItemById(userId: string, productId: string): Observable<any> {
+    const url = `${this.baseurl2}/${productId}?userId=${userId}`;
+    return this.http.get(url);
+  }
+
+  // Add new method...
+  // addToCart(userid: number, productid: string) {
+    // let url = this.baseurl + 'InsertCartItem/' + userid + '/' + productid;
+    // return this.http.post(url, null, { responseType: 'text' });
+  // }
 
   getActiveCartOfUser(userid: number) {
     let url = this.baseurl + 'GetActiveCartOfUser/' + userid;

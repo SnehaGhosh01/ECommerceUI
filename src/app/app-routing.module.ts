@@ -8,15 +8,18 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { ProductsComponent } from './products/products.component';
 import { SearchComponent } from './search/search.component';
 import { AccountComponent } from './account/account.component';
+import { EWalletComponent } from './e-wallet/e-wallet.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'product-details', component: ProductDetailsComponent },
+  { path: 'product-details/:id', component: ProductDetailsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'orders', component: OrderComponent },
   { path: 'search', component: SearchComponent },
   { path: 'account', component: AccountComponent },
+  { path: 'ewallet', component: EWalletComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
   
