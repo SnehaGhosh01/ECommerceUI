@@ -37,6 +37,13 @@ export class WalletRechargeModel {
     this.amount = amount;
   }
 }
+export interface PlaceOrderDto{
+  method: string;
+  password: string;
+  address: string;
+  name: string;
+  mobile: string;
+}
 export interface ShoppingCartItem {
   productId: string;
   productName: string;

@@ -29,6 +29,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { AccountComponent } from './account/account.component';
 import { EWalletComponent } from './e-wallet/e-wallet.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { EWalletComponent } from './e-wallet/e-wallet.component';
     SearchComponent,
     AccountComponent,
     EWalletComponent,
+    CheckoutComponent,
 
   ],
   imports: [

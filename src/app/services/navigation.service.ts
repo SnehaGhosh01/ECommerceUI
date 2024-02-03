@@ -154,6 +154,22 @@ export class NavigationService {
     const url = `${this.baseurl2}/${productId}?userId=${userId}`;
     return this.http.get(url);
   }
+  placeOrder(userId: string, payment: any): Observable<any> {
+    const url = `${this.baseurl2}OrderDetails?userId=${userId}`;
+  
+    return this.http.post(url,(payment));
+  }
+  
+
+  getAllOrders(userId: string): Observable<any> {
+    const url = `${this.baseurl2}?userId=${userId}`;
+    return this.http.get(url);
+  }
+
+  getExactOrder(userId: string, orderId: string): Observable<any> {
+    const url = `${this.baseurl2}/${orderId}?userId=${userId}`;
+    return this.http.get(url);
+  }
 
   // Add new method...
   // addToCart(userid: number, productid: string) {

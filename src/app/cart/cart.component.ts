@@ -128,6 +128,6 @@ export class CartComponent implements OnInit {
   }
 
   checkout() {
-    this.router.navigate(['/orders']);
+    this.router.navigate(['/checkout']);
   }
 }
