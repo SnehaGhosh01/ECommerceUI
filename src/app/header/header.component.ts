@@ -12,6 +12,7 @@ import { RegisterComponent } from '../register/register.component';
 import { NavigationService } from '../services/navigation.service';
 import { UtilityService } from '../services/utility.service';
 import { Router } from '@angular/router';
+import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-header',
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit {
   @ViewChild('container', { read: ViewContainerRef, static: true })
   container!: ViewContainerRef;
   cartItems: number = 0;
+  cartcurrentvalue:number=0;
 
   navigationList: NavigationItem[] = [];
   constructor(
@@ -52,6 +54,13 @@ export class HeaderComponent implements OnInit {
     });
 
     // Cart
+    // if (this.utilityService.isLoggedIn()) {
+    //   this.navigationService
+    //     .getActiveCartOfUser(this.utilityService.getUser().id)
+    //     .subscribe((res: any) => {
+    //       this.cartItems = res.cartItems.length;
+    //     });
+    // }
     if (this.utilityService.isLoggedIn()) {
       this.navigationService
         .getActiveCartOfUser(this.utilityService.getUser().id)
@@ -59,6 +68,7 @@ export class HeaderComponent implements OnInit {
           this.cartItems = res.cartItems.length;
         });
     }
+    
 
     this.utilityService.changeCart.subscribe((res: any) => {
       if (parseInt(res) === 0) this.cartItems = 0;

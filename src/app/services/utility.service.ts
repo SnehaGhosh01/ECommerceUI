@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Subject, window } from 'rxjs';
-import { Cart, Payment, Product, Product2, User } from '../models/models';
+import { Cart, Payment, Product, Product2, ShoppingCartItem, User } from '../models/models';
 import { NavigationService } from './navigation.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,8 @@ export class UtilityService {
 
   constructor(
     private navigationService: NavigationService,
-    private jwt: JwtHelperService
+    private jwt: JwtHelperService,
+    private router: Router,
   ) {}
 
   applyDiscount(price: number, discount: number): number {
@@ -22,13 +24,12 @@ export class UtilityService {
 
   // JWT Helper Service : npm install @auth0/angular-jwt
 
-getUserIdFromLocalStorage() {
-  let userString=localStorage.getItem('user');
-  if(userString!=null){
-    return JSON.parse(userString).userId;
+  getUserIdFromLocalStorage() {
+    let userString = localStorage.getItem('user');
+    if (userString != null) {
+      return JSON.parse(userString).userId;
+    }
   }
- 
-}
   getUser(): User {
     //let id=this.getUserIdFromLocalStorage();
     let token = this.jwt.decodeToken();
@@ -56,17 +57,37 @@ getUserIdFromLocalStorage() {
 
   logoutUser() {
     localStorage.removeItem('user');
+    this.router.navigate(['/home']);
   }
 
-  addToCart(product: Product2) {
+  // addToCart(product: Product2) {
+  //   debugger;
+  //   let productid = product.productId;
+
+  //   let userid = this.getUserIdFromLocalStorage();
+  //   debugger;
+  //   this.navigationService.addToCart(userid, productid).subscribe((res) => {
+  //     debugger;
+  //     if (res.toString() === 'inserted') {
+  //       this.changeCart.next(1);
+  //     }
+  //   });
+  // }
+  addToCart(product:Product2) {
     let productid = product.productId;
-    let userid = this.getUserIdFromLocalStorage();
-
-    this.navigationService.addToCart(userid, productid).subscribe((res) => {
-      if (res.toString() === 'inserted') this.changeCart.next(1);
-    });
+    let userId = this.getUserIdFromLocalStorage();
+    this.navigationService.addToCart(userId, productid).subscribe(
+      () => {
+        console.log('Item added to cart successfully');
+        this.changeCart.next(1);
+        
+        this.router.navigate(['/cart']);
+      },
+      (error) => {
+        console.error('Error adding item to cart:', error);
+      }
+    );
   }
-
   calculatePayment(cart: Cart, payment: Payment) {
     payment.totalAmount = 0;
     payment.amountPaid = 0;
@@ -105,7 +126,5 @@ getUserIdFromLocalStorage() {
     return pricepaid;
   }
 
-  orderTheCart() {
-    
-  }
+  orderTheCart() {}
 }

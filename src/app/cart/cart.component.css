@@ -1,0 +1,8 @@
+.total-cart-value{
+    text-align: right;
+    color: green;
+}
+.custom-checkout{
+    background-color: rgb(72, 70, 70);
+    border-radius: 10px;
+}
