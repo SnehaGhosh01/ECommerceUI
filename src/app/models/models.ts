@@ -19,6 +19,34 @@ export interface User {
   createdAt: string;
   modifiedAt: string;
 }
+export class WalletRechargeModel {
+  cardNumber: number;
+  cvvNumber: number;
+  cardHolderName: string;
+  amount: number;
+
+  constructor(
+    cardNumber: number,
+    cvvNumber: number,
+    cardHolderName: string,
+    amount: number
+  ) {
+    this.cardNumber = cardNumber;
+    this.cvvNumber = cvvNumber;
+    this.cardHolderName = cardHolderName;
+    this.amount = amount;
+  }
+}
+export interface ShoppingCartItem {
+  productId: string;
+  productName: string;
+  count: number;
+  stock: number;
+  price: number;
+  totalPrice: number;
+  imageUrl: string;
+  // Add other properties as needed
+}
 export interface UserRegistration {
   email: string;
   name: string;
@@ -43,7 +71,6 @@ export interface Category {
 export interface ApplicationCategory {
   id: number;
   category: string;
-  
 }
 export interface Product {
   id: number;
@@ -55,16 +82,15 @@ export interface Product {
   quantity: number;
   imageName: string;
 }
-export interface Product2{
-  
-    productId: string;
-    productName: string;
-    description: string;
-    price: number;
-    stock: number;
-    imageUrl: string;
-    categoryId: number;// Assuming Category is another TypeScript interface
-    venderId: string;  // Assuming ApplicationUser is another TypeScript interface
+export interface Product2 {
+  productId: string;
+  productName: string;
+  description: string;
+  price: number;
+  stock: number;
+  imageUrl: string;
+  categoryId: number; // Assuming Category is another TypeScript interface
+  venderId: string; // Assuming ApplicationUser is another TypeScript interface
 }
 
 export interface Review {

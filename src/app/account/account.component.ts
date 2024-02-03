@@ -48,6 +48,9 @@ export class AccountComponent implements OnInit {
     this.updatedProfile = { ...this.accountDetails };
     this.updateUrlQueryParams(true);
   }
+  navigateToEWallet() {
+    this.router.navigate(['/ewallet']);
+  }
 
   exitEditMode() {
     this.isEditMode = false;

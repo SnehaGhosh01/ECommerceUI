@@ -21,11 +21,11 @@
     color: black;
   }
   .custom-edit{
-    background-color: rgb(16, 16, 16);
+    background-color: rgb(106, 104, 104);
     color: rgb(247, 245, 250);
     border-width: 10px 10px 00px 0; /* top right bottom left */
     border-style: solid;
-    border-color: black;
+    /* border-color: black; */
   }
   .custom-edit-header{
     background-color: white;

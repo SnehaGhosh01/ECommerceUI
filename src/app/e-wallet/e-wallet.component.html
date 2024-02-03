@@ -1,1 +1,54 @@
-<p>e-wallet works!</p>
+<!-- ewallet.component.html -->
+
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h3>Your E-Wallet</h3>
+    </div>
+    <div class="card-body">
+      <div *ngIf="eWalletBalance !== undefined">
+        <h4>Your Balance</h4>
+        <p>{{ eWalletBalance }}</p>
+        <button type="button" class="btn btn-primary mt-3" (click)="navigateToRecharge()">Recharge</button>
+        <button type="button" class="btn btn-primary mt-3">Change Password</button>
+        <button type="button" class="btn btn-primary mt-3">Forget Password</button>
+      </div>
+      <div *ngIf="eWalletBalance === undefined">
+        <!-- Loading or error message, handle as needed -->
+        <p>Loading E-Wallet details...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recharge Form -->
+  <div *ngIf="showRechargeForm">
+    <h2>Recharge Your Wallet</h2>
+
+    <form (ngSubmit)="rechargeEWallet()" #rechargeForm="ngForm">
+      <div class="mb-3">
+        <label for="cardNumber" class="form-label">Card Number</label>
+        <input type="text" id="cardNumber" name="cardNumber" class="form-control" [(ngModel)]="rechargeData.cardNumber" required pattern="[0-9]{16}">
+      </div>
+
+      <div class="mb-3">
+        <label for="cvvNumber" class="form-label">CVV</label>
+        <input type="text" id="cvvNumber" name="cvvNumber" class="form-control" [(ngModel)]="rechargeData.cvvNumber" required pattern="[0-9]{3}">
+      </div>
+
+      <div class="mb-3">
+        <label for="cardHolderName" class="form-label">Card Holder Name</label>
+        <input type="text" id="cardHolderName" name="cardHolderName" class="form-control" [(ngModel)]="rechargeData.cardHolderName" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="amount" class="form-label">Amount</label>
+        <input type="text" id="amount" name="amount" class="form-control" [(ngModel)]="rechargeData.amount" required>
+        <div *ngIf="rechargeForm.controls['amount'].invalid && (rechargeForm.controls['amount'].dirty || rechargeForm.controls['amount'].touched)" class="text-danger">
+          <div *ngIf="rechargeForm.controls['amount'].errors?.['required']">Amount is required</div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="rechargeForm.invalid">Recharge</button>
+    </form>
+  </div>
+</div>

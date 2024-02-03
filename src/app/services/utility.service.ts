@@ -60,7 +60,7 @@ getUserIdFromLocalStorage() {
 
   addToCart(product: Product2) {
     let productid = product.productId;
-    let userid = this.getUser().id;
+    let userid = this.getUserIdFromLocalStorage();
 
     this.navigationService.addToCart(userid, productid).subscribe((res) => {
       if (res.toString() === 'inserted') this.changeCart.next(1);
