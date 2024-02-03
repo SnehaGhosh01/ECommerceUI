@@ -1,3 +1,22 @@
+/* Your existing CSS styles */
+
+/* Style for product image */
+.product-image {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-height: 500px; /* Set a maximum height for consistency */
+    width: 100%; /* Ensure images fill the container */
+    object-fit: contain; /* Preserve aspect ratio without cutting off */
+    transition: transform 200ms ease-in-out;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+.product-image:hover {
+    transform: scale(1.08);
+}
+
+/* Your existing CSS styles */
+
 .image-thumbnails>img {
     width: 17%;
     cursor: pointer;

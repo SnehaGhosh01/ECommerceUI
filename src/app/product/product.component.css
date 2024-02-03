@@ -1,3 +1,66 @@
+/* Your existing CSS styles */
+
+/* General styling for cards */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  .card img {
+    object-fit: contain;
+    height: 300px; /* Set a fixed height for the images */
+    width: 100%; /* Ensure images fill the container */
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+  
+  .card-subtitle {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .card-footer {
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-top: 1px solid #ddd;
+  }
+  
+  /* Additional styling for grid and list views */
+  .grid-view .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .list-view .card {
+    display: flex;
+    align-items: stretch;
+  }
+  
+  .list-view .card .col-md-4 {
+    flex: 0 0 30%; /* Adjust as needed */
+  }
+  
+  .list-view .card .col {
+    flex: 1;
+  }
+  
+  .cart-item-view .card {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Your existing CSS styles */
+  
 :host {
     display: block;
     overflow: hidden;

@@ -1,14 +1,16 @@
+<!-- Your existing HTML code -->
+
 <div class="my-container mx-auto" *ngIf="product">
     <div class="row g-0">
 
         <!-- Profile Image of Product -->
         <div class="col-4 p-4">
             <div class="d-flex justify-content-center align-items-center">
-                <img src="../../assets/Images/{{product.imageUrl}}"
-                     alt="" class="w-100">
+                <img src="../../assets/Images/{{product.imageUrl}}" alt="" class="w-100 product-image">
             </div>
 
-          <!--  <div class="image-thumbnails mt-4 d-flex justify-content-between align-items-center">
+            <!-- Thumbnail Images (commented out in your code) -->
+            <!--<div class="image-thumbnails mt-4 d-flex justify-content-between align-items-center">
                 <img src="../../assets/Images/{{product.productCategory.subCategory}}/{{product.id}}/1.jpg"
                      alt="Thumbnail Image" (click)="imageIndex = 1">
                 <img src="../../assets/Images/{{product.productCategory.subCategory}}/{{product.id}}/2.jpg"
@@ -70,48 +72,12 @@
         </div>-->
     </div>
 
-    <!-- Review 
+    <!-- Review section (commented out in your code) -->
+    <!--
     <div class="row g-0 my-5">
         Users Review 
-        <div class="col p-3">
-            <h3>Give Your Review</h3>
-            <h5 class="mt-4">Write Your Review</h5>
-            <textarea class="w-75 p-2" [formControl]="reviewControl"></textarea>
-            <div class="d-flex align-items-start">
-                <button class="btn btn-outline-secondary mt-4 me-5" type="button" (click)="submitReview()">
-                    Save Review
-                </button>
-
-                <div>
-                    <h6 class="text-danger mt-4" *ngIf="!utilityService.isLoggedIn()">Login first, then enter the
-                        review.</h6>
-                    <h6 class="text-danger" *ngIf="showError">Review Cannot Be Empty!</h6>
-                    <h6 class="text-success" *ngIf="reviewSaved">Review Saved Succesfully!</h6>
-                </div>
-            </div>
-        </div>
-
-        
-        <div class="col p-3">
-            <h3>Other Reviews</h3>
-            <h6 *ngIf="otherReviews.length === 0">No Reviews Yet!</h6>
-            <div class="card mt-3" *ngFor="let review of otherReviews">
-                <div class="card-header d-flex justify-content-between">
-                    <div class="card-text">
-                        {{review.user.firstName}}
-                        {{review.user.lastName}}
-                    </div>
-                    <div class="card-text fst-italic">
-                        Reviewed On: <span class="fw-bold">
-                            {{review.createdAt | date:"dd-MMM-yyyy"}}
-                        </span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-text">{{review.value}}</div>
-                </div>
-            </div>
-        </div>
-    </div> -->
+        ... (rest of your review section)
+    </div>
+    -->
 
 </div>
