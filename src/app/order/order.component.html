@@ -1,8 +1,8 @@
 <!-- Display all orders in a table -->
-<div *ngIf="groupedOrders.length > 0">
-  <h2>All Orders</h2>
-  <table class="table">
-    <thead>
+<div *ngIf="groupedOrders.length > 0 && !selectedOrder">
+  <h2 class="mb-4 text-center">All Orders</h2>
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
       <tr>
         <th>Order ID</th>
         <th>Order Date</th>
@@ -26,35 +26,41 @@
 
 <!-- Display details for the selected order in a card -->
 <div *ngIf="selectedOrder">
-  <h2>Order Details - {{ selectedOrder[0].orderId }}</h2>
-
-  <div class="card">
+  <div class="order-details-header">
+    <h2 class="mt-4 mb-3 text-center">Order Details - {{ selectedOrder[0].orderId }}</h2>
+  </div>
+  <div class="card custom-card">
     <div class="card-body">
-      <h5 class="card-title">Order ID: {{ selectedOrder[0].orderId }}</h5>
-      <p class="card-text">Order Date: {{ selectedOrder[0].orderDate | date: 'medium' }}</p>
-      <p class="card-text">Name: {{ selectedOrder[0].name }}</p>
-      <p class="card-text">Shipping Address: {{ selectedOrder[0].shippingAddress }}</p>
-      <p class="card-text">Mobile Number: {{ selectedOrder[0].mobile }}</p>
-      <p class="card-text">Grand Total: {{ selectedOrder[0].grandTotal | currency }}</p>
-      <!-- Add other relevant order details as needed -->
+      
+      <div class="order-detail">
+        <p class="mb-2"><strong>Order ID:</strong> {{ selectedOrder[0].orderId }}</p>
+        <p class="mb-2"><strong>Order Date:</strong> {{ selectedOrder[0].orderDate | date: 'medium' }}</p>
+        <p class="mb-2"><strong>Name:</strong> {{ selectedOrder[0].name }}</p>
+        <p class="mb-2"><strong>Shipping Address:</strong> {{ selectedOrder[0].shippingAddress }}</p>
+        <p class="mb-2"><strong>Mobile Number:</strong> {{ selectedOrder[0].mobile }}</p>
+        <p class="mb-0"><strong>Grand Total:</strong> {{ selectedOrder[0].grandTotal | currency }}</p>
+        <!-- Add other relevant order details as needed -->
+      </div>
     </div>
   </div>
 
   <!-- Display products in a table within a card -->
-  <div class="card mt-3">
+  <div class="card mt-3 custom-card">
     <div class="card-body">
       <h5 class="card-title">Products for Order - {{ selectedOrder[0].orderId }}</h5>
-      <table class="table">
-        <thead>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
           <tr>
+            <th>product Image</th>
             <th>Product Name</th>
             <th>Quantity</th>
             <th>Total Price</th>
             <!-- Add other relevant columns as needed -->
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let product of selectedOrder">
+        <tbody class="custom-body">
+          <tr *ngFor="let product of selectedOrder" [routerLink]="['/product-details']" [queryParams]="{ id: product.productId }">
+            <td><img src="../../assets/Images/{{product.imageUrl}}" alt="" class="mr-3" style="max-width: 100px; max-height: 100px;"></td>
             <td>{{ product.productName }}</td>
             <td>{{ product.count }}</td>
             <td>{{ product.totalPrice | currency }}</td>

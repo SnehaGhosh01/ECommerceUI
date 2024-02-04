@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'orders', component: OrderComponent },
   { path: 'orders/:orderId', component: OrderComponent },
+  { path: 'ewallet-recharge', component: EWalletComponent },
   { path: 'search', component: SearchComponent },
   { path: 'account', component: AccountComponent },
   { path: 'ewallet', component: EWalletComponent },
