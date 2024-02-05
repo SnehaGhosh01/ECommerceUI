@@ -165,7 +165,10 @@ export class NavigationService {
     const url = `${this.baseurl2}OrderDetails?userId=${userId}`;
     return this.http.get(url);
   }
-
+getTransactionListOfUser(userId: string): Observable<any> {
+    const apiUrl = `${this.baseurl2}Auth/TransactionListOfUser?userId=${userId}`;
+    return this.http.get(apiUrl);
+  }
   getExactOrder(userId: string, orderId: string): Observable<any> {
     const url = `${this.baseurl2}OrderDetails/${orderId}?userId=${userId}`;
     return this.http.get(url);

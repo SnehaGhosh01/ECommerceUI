@@ -10,6 +10,7 @@ import { SearchComponent } from './search/search.component';
 import { AccountComponent } from './account/account.component';
 import { EWalletComponent } from './e-wallet/e-wallet.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { TransactionsComponent } from './transactions/transactions.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'account', component: AccountComponent },
   { path: 'ewallet', component: EWalletComponent },
   { path: 'checkout', component: CheckoutComponent },
+  {path: 'transactions', component: TransactionsComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
   

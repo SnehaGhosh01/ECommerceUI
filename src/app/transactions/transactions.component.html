@@ -1,0 +1,36 @@
+<!-- transaction-list.component.html -->
+<div *ngIf="transactions$ | async as transactions; else loading">
+    <h2 class="text-center mt-4 mb-3 custom-heading">Transaction List</h2>
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Transaction ID</th>
+            <th>Order ID</th>
+            <th>DateTime</th>
+            <th>Type</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of transactions">
+            <td>{{ transaction.id }}</td>
+            <td>{{ transaction.orderId || 'Recharge E-Wallet' }}</td>
+            <td>{{ transaction.dateTime | date: 'medium' }}</td>
+            <td>{{ transaction.type }}</td>
+            <td>{{ transaction.amount | currency:'INR':'symbol':'1.2-2' }}</td>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div *ngIf="!(transactions$ | async)" class="text-center mt-3">
+    <p>No transactions found.</p>
+  </div>
+  <ng-template #loading>
+    <div class="text-center mt-4">
+      <p>Loading...</p>
+    </div>
+  </ng-template>
+  

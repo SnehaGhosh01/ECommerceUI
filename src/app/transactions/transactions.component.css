@@ -1,0 +1,60 @@
+/* transaction-list.component.css */
+
+/* Container styling */
+.container {
+    margin-top: 20px;
+  }
+  
+  /* Table styling */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft box shadow for a subtle lift */
+  }
+  
+  .table th, .table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #dee2e6; /* Light gray border between rows */
+  }
+  
+  .table th {
+    background-color: #4caf50; /* Dark background color for header */
+    color: #ffffff; /* Text color for header */
+  }
+  
+  .table tbody tr:nth-child(odd) {
+    background-color: #ecf0f1; /* Light background color for odd rows */
+  }
+  
+  /* Loading message styling */
+  .loading {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  /* No transactions message styling */
+  .no-transactions {
+    margin-top: 20px;
+    text-align: center;
+    font-style: italic;
+    color: #6c757d;
+  }
+  
+  /* Hover effect for table rows */
+  .table tbody tr:hover {
+    background-color: #f4f6f7; /* Light background color on hover */
+    transition: background-color 0.3s;
+  }
+  .custom-heading {
+    border: 2px solid #4caf50; /* Green border at the bottom of the heading */
+    border-radius: 10px;
+    color: #4caf50; /* Green text color */
+    padding: 5px; /* Some padding for visual appeal */
+    display: block; /* Ensures that the border spans the width of the text */
+  }
+  
+  
+  
+  

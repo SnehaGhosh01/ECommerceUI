@@ -30,6 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AccountComponent } from './account/account.component';
 import { EWalletComponent } from './e-wallet/e-wallet.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { TransactionsComponent } from './transactions/transactions.component';
 
 
 @NgModule({
@@ -53,7 +54,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     AccountComponent,
     EWalletComponent,
     CheckoutComponent,
-
+    TransactionsComponent,
   ],
   imports: [
     BrowserModule,

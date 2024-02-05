@@ -14,7 +14,7 @@ export class AccountComponent implements OnInit {
   accountDetails: any;
   isEditMode: boolean = false;
   updatedProfile: any = {};
-
+  showTransactionList = false;
   constructor(
     private navigationService: NavigationService,
     private utilityService: UtilityService,
@@ -28,6 +28,9 @@ export class AccountComponent implements OnInit {
     });
 
     this.loadAccountDetails();
+  }
+  viewTransactionList() {
+    this.router.navigate(['/transactions']);
   }
 
   loadAccountDetails() {
