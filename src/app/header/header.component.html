@@ -39,13 +39,15 @@
                       </button>
                       
             <button type="button" class="btn btn-outline-light" routerLink="/cart"
-                    *ngIf="utilityService.isLoggedIn()">
+                    *ngIf="utilityService.isLoggedIn() && utilityService.getUserRoleFromLocalStorage()=='User'">
                     Cart
                     <!--<span class="badge bg-warning text-dark">{{cartItems}}</span>-->
                 </button>
             <button type="button" class="btn btn-outline-light" routerLink="/orders"
-                    *ngIf="utilityService.isLoggedIn()">Orders</button>
-            <button type="button" class="btn btn-outline-light" (click)="utilityService.logoutUser()"
+                    *ngIf="utilityService.isLoggedIn() && utilityService.getUserRoleFromLocalStorage()=='User'">Orders</button>
+                    <button type="button" class="btn btn-outline-light" routerLink="/orders"
+                    *ngIf="utilityService.isLoggedIn() && utilityService.getUserRoleFromLocalStorage()=='Vender'">Orders List</button>
+                    <button type="button" class="btn btn-outline-light" (click)="utilityService.logoutUser()"
                     *ngIf="utilityService.isLoggedIn()">Logout</button>
         </div>
     </div>

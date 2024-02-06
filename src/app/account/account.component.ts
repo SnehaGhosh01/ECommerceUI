@@ -17,7 +17,7 @@ export class AccountComponent implements OnInit {
   showTransactionList = false;
   constructor(
     private navigationService: NavigationService,
-    private utilityService: UtilityService,
+    public utilityService: UtilityService,
     private route: ActivatedRoute,
     private router: Router
   ) {}

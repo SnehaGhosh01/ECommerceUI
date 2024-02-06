@@ -62,7 +62,7 @@ export class NavigationService {
     return this.http.get(url);
   }
   registerForEWallet(userId: string, registrationData: any) {
-    const url = `${this.baseurl2}EWallet/Register?userId=${userId}`;
+    const url = `${this.baseurl2}EWallet?userId=${userId}`;
     return this.http.post(url, registrationData, { responseType: 'text' });
   }
 

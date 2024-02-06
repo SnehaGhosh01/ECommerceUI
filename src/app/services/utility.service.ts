@@ -30,6 +30,12 @@ export class UtilityService {
       return JSON.parse(userString).userId;
     }
   }
+  getUserRoleFromLocalStorage() {
+    let userString = localStorage.getItem('user');
+    if (userString != null) {
+      return JSON.parse(userString).role;
+    }
+  }
   getUser(): User {
     //let id=this.getUserIdFromLocalStorage();
     let token = this.jwt.decodeToken();
