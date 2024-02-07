@@ -173,7 +173,25 @@ getTransactionListOfUser(userId: string): Observable<any> {
     const url = `${this.baseurl2}OrderDetails/${orderId}?userId=${userId}`;
     return this.http.get(url);
   }
+  getAllProducts(): Observable<any> {
+    return this.http.get<any>(`${this.baseurl2}Product`);
+  }
 
+  getProductById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.baseurl2}/${id}`);
+  }
+
+  addProduct(product: any): Observable<any> {
+    return this.http.post<any>(`${this.baseurl2}Product/Add`, product);
+  }
+
+  updateProduct(id: string, product: any): Observable<any> {
+    return this.http.put<any>(`${this.baseurl2}Product/${id}`, product);
+  }
+
+  deleteProduct(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.baseurl2}Product/${id}`);
+  }
   // Add new method...
   // addToCart(userid: number, productid: string) {
     // let url = this.baseurl + 'InsertCartItem/' + userid + '/' + productid;

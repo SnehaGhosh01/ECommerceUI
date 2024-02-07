@@ -31,6 +31,7 @@ import { AccountComponent } from './account/account.component';
 import { EWalletComponent } from './e-wallet/e-wallet.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { TransactionsComponent } from './transactions/transactions.component';
+import { ProductaddComponent } from './productadd/productadd.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { TransactionsComponent } from './transactions/transactions.component';
     EWalletComponent,
     CheckoutComponent,
     TransactionsComponent,
+    ProductaddComponent,
   ],
   imports: [
     BrowserModule,

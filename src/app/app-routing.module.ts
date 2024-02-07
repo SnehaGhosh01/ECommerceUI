@@ -11,6 +11,7 @@ import { AccountComponent } from './account/account.component';
 import { EWalletComponent } from './e-wallet/e-wallet.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { TransactionsComponent } from './transactions/transactions.component';
+import { ProductaddComponent } from './productadd/productadd.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -26,6 +27,8 @@ const routes: Routes = [
   { path: 'ewallet', component: EWalletComponent },
   { path: 'checkout', component: CheckoutComponent },
   {path: 'transactions', component: TransactionsComponent},
+  {path: 'orderlist', component: ProductaddComponent},
+  { path: 'add-product', component: ProductaddComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
   

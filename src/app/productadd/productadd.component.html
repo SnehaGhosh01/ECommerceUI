@@ -1,0 +1,221 @@
+<div class="container mt-4" *ngIf="!isEditMode">
+  <!-- Category dropdown -->
+  <div class="form-group">
+    <label for="categorySelect">Category</label>
+    <select class="form-control" id="categorySelect" [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
+      <option value="">Select Category</option>
+      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+  </div>
+
+  <!-- Subcategory dropdown (only shown when a category is selected) -->
+  <div class="form-group" *ngIf="selectedCategory">
+    <label for="subcategorySelect">Subcategory</label>
+    <select class="form-control" id="subcategorySelect" [(ngModel)]="selectedSubcategory" (change)="onSubcategoryChange()">
+      <option value="">Select Subcategory</option>
+      <option *ngFor="let subcategory of  getSubcategoryNames(selectedCategory)" [value]="subcategory">{{ subcategory }}</option>
+    </select>
+  </div>
+
+  <!-- Products -->
+  <div class="card" *ngFor="let product of filteredProducts">
+    <div class="card-body">
+      <h5 class="card-title">{{ product.productName }}</h5>
+      <p class="card-text">{{ product.description }}</p>
+      <button type="button" class="btn btn-primary" (click)="editProduct(product)">Edit</button>
+      <button type="button" class="btn btn-danger" (click)="deleteProduct(product.productId)">Delete</button>
+    </div>
+  </div>
+
+
+
+  <!-- Add button -->
+  <button type="button" class="btn btn-success" (click)="addProductForm()">
+    Add Product
+  </button>
+</div>
+
+<!-- Form to edit/add product -->
+<div class="container" *ngIf="isEditMode && selectedProduct">
+  <h2>{{ selectedProduct.productId ? "Edit" : "Add" }} Product</h2>
+  <form (ngSubmit)="saveProduct()">
+    <!-- Input fields for product properties -->
+    <div class="form-group">
+      <label for="productName">Product Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="productName"
+        [(ngModel)]="selectedProduct.productName"
+        name="productName"
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        [(ngModel)]="selectedProduct.description"
+        name="description"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input
+        type="number"
+        class="form-control"
+        id="price"
+        [(ngModel)]="selectedProduct.price"
+        name="price"
+      />
+    </div>
+    <div class="form-group">
+      <label for="stock">Stock</label>
+      <input
+        type="number"
+        class="form-control"
+        id="stock"
+        [(ngModel)]="selectedProduct.stock"
+        name="stock"
+      />
+    </div>
+    <div class="form-group">
+      <label for="imageUrl">Image URL</label>
+      <input
+        type="text"
+        class="form-control"
+        id="imageUrl"
+        [(ngModel)]="selectedProduct.imageUrl"
+        name="imageUrl"
+      />
+    </div>
+    <div class="form-group">
+      <label for="categoryName">Category Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="categoryName"
+        [(ngModel)]="selectedProduct.categoryName"
+        name="categoryName"
+      />
+    </div>
+    <div class="form-group">
+      <label for="subCategoryName">Subcategory Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="subCategoryName"
+        [(ngModel)]="selectedProduct.subCategoryName"
+        name="subCategoryName"
+      />
+    </div>
+    <div class="form-group">
+      <label for="vendorEmail">Vendor Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="vendorEmail"
+        [(ngModel)]="selectedProduct.venderEmail"
+        name="vendorEmail"
+      />
+    </div>
+    <!-- Save and Cancel buttons -->
+    <button type="submit" class="btn btn-primary">
+      {{ selectedProduct.productId ? "Save" : "Add" }}
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="cancelEdit()">
+      Cancel
+    </button>
+  </form>
+</div>
+<!-- Form to add product -->
+<div class="container" *ngIf="isEditMode && !selectedProduct">
+  <h2>Add Product</h2>
+  <form (ngSubmit)="addProduct()">
+    <!-- Input fields for product properties -->
+    <div class="form-group">
+      <label for="productName">Product Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="productName"
+        [(ngModel)]="newProduct.productName"
+        name="productName"
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        [(ngModel)]="newProduct.description"
+        name="description"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input
+        type="number"
+        class="form-control"
+        id="price"
+        [(ngModel)]="newProduct.price"
+        name="price"
+      />
+    </div>
+    <div class="form-group">
+      <label for="stock">Stock</label>
+      <input
+        type="number"
+        class="form-control"
+        id="stock"
+        [(ngModel)]="newProduct.stock"
+        name="stock"
+      />
+    </div>
+    <div class="form-group">
+      <label for="imageUrl">Image URL</label>
+      <input
+        type="text"
+        class="form-control"
+        id="imageUrl"
+        [(ngModel)]="newProduct.imageUrl"
+        name="imageUrl"
+      />
+    </div>
+    <div class="form-group">
+      <label for="categoryName">Category Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="categoryName"
+        [(ngModel)]="newProduct.categoryName"
+        name="categoryName"
+      />
+    </div>
+    <div class="form-group">
+      <label for="subCategoryName">Subcategory Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="subCategoryName"
+        [(ngModel)]="newProduct.subCategoryName"
+        name="subCategoryName"
+      />
+    </div>
+    <div class="form-group">
+      <label for="venderEmail">Vendor Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="venderEmail"
+        [(ngModel)]="newProduct.venderEmail"
+        name="venderEmail"
+      />
+    </div>
+    <!-- Save and Cancel buttons -->
+    <button type="submit" class="btn btn-primary" (click)="addProduct( )">Add</button>
+    <button type="button" class="btn btn-secondary" (click)="cancelAdd()">
+      Cancel
+    </button>
+  </form>
+</div>

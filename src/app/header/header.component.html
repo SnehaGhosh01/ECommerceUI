@@ -45,7 +45,7 @@
                 </button>
             <button type="button" class="btn btn-outline-light" routerLink="/orders"
                     *ngIf="utilityService.isLoggedIn() && utilityService.getUserRoleFromLocalStorage()=='User'">Orders</button>
-                    <button type="button" class="btn btn-outline-light" routerLink="/orders"
+                    <button type="button" class="btn btn-outline-light" routerLink="/orderlist"
                     *ngIf="utilityService.isLoggedIn() && utilityService.getUserRoleFromLocalStorage()=='Vender'">Orders List</button>
                     <button type="button" class="btn btn-outline-light" (click)="utilityService.logoutUser()"
                     *ngIf="utilityService.isLoggedIn()">Logout</button>

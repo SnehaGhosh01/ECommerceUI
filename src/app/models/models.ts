@@ -99,7 +99,46 @@ export interface Product2 {
   categoryId: number; // Assuming Category is another TypeScript interface
   venderId: string; // Assuming ApplicationUser is another TypeScript interface
 }
+export interface Product3 {
+  productId: string;
+  productName: string;
+  description: string;
+  price: number;
+  stock: number;
+  imageUrl: string;
+  categoryName:string;
+  subCategoryName:string;
+  venderEmail: string; // Assuming Category is another TypeScript interface
+   // Assuming ApplicationUser is another TypeScript interface
+}
+export class Product4 {
+ 
+  productName: string;
+  description: string;
+  price: number;
+  stock: number;
+  imageUrl: string;
+  categoryName: string;
+  subCategoryName: string;
+  venderEmail: string;
 
+  constructor() {
+    
+    this.productName = '';
+    this.description = '';
+    this.price = 0;
+    this.stock = 0;
+    this.imageUrl = '';
+    this.categoryName = '';
+    this.subCategoryName = '';
+    this.venderEmail = '';
+  }
+}
+export interface GroupedProduct {
+  category: string;
+  subcategory: string;
+  items: Product3[];
+}
 export interface Review {
   id: number;
   user: User;
