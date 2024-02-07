@@ -1,0 +1,153 @@
+.container {
+    width: 90%; /* Adjust this value as needed */
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    margin-bottom: 20px;
+  }
+  .custom-cate{
+    color: #4cae4c;
+    font-size: 20px;
+  }
+  .card-title {
+    font-size: 1.25rem;
+  }
+  
+  .card-text {
+    margin-bottom: 15px;
+  }
+  
+  .add-button {
+    margin-bottom: 20px;
+    background-color: #4caf50;
+  }
+  
+  .form-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .button-group button {
+    margin-right: 10px;
+  }
+  .table tbody tr {
+    height: 50px; /* Adjust this value as needed */
+    width:80%;
+  }
+  .product-image {
+    max-width: 200px; /* Adjust this value as needed */
+    max-height: 200px; /* Adjust this value as needed */
+  }
+  .description-cell {
+    max-width: 1000px; /* Adjust the width as needed */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  }
+  .product-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px; /* Adjust as needed */
+  }
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  
+  .table th, .table td {
+    padding: 8px;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .table th {
+    background-color: #4caf50;;
+    color: #fff;
+  }
+  
+  .table-bordered th, .table-bordered td {
+    border: 1px solid #dee2e6;
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.075);
+  }
+  /* Add these styles to your CSS file */
+
+/* Style for form container */
+.container.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #4caf50; /* Add border style */
+  }
+  
+  /* Style for form title */
+  .container.form-container h2 {
+    margin-bottom: 20px;
+  }
+  
+  /* Style for form input fields */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: #4caf50;
+  }
+  
+  /* Style for buttons */
+  .btn {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    color: #fff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #1d5d1d;
+    border-color: #4cae4c;
+  }
+  
+  .btn-secondary {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #fff;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #b3b3b3;
+    border-color: #b3b3b3;
+  }
+  
+  

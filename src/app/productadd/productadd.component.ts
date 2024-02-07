@@ -19,6 +19,7 @@ export class ProductaddComponent implements OnInit {
   selectedSubcategory: string | null = null;
   filteredProducts: Product3[] = [];
   isAddMode:boolean=false;
+  selectedIndex: number | null = null;
 
   constructor(private navigationService: NavigationService) { }
 
@@ -78,24 +79,25 @@ export class ProductaddComponent implements OnInit {
   }
 
 
-  editProduct(product: Product3) {
+  editProduct(product: Product3, index: number) {
     this.selectedProduct = { ...product };
-    this.isEditMode = true;
-    this.isAddMode = false; // Ensure add mode is off
+    this.isEditMode = !this.isEditMode;
+    this.selectedIndex = index + 1; // Adjust the index for the table row
   }
 
   cancelEdit(): void {
     this.selectedProduct = null;
     this.isEditMode = false;
+    this.selectedIndex = null; // Reset the selected index
   }
-
+ 
   cancelAdd(): void {
     this.isAddMode = false; // Turn off add mode
     this.newProduct = new Product4(); // Reset newProduct
   }
 addProductForm(){
-  this.isAddMode = true;
-  this.isEditMode=true;
+  this.isAddMode = !this.isAddMode;
+  this.isEditMode=!this.isEditMode;
 }
   addProduct(): void {
     
@@ -107,6 +109,7 @@ addProductForm(){
             this.newProduct = new Product4(); // Reset newProduct for adding more products
           },
           error => {
+            window.alert("category doesn't exist");
             console.error('Error adding product:', error);
             // Handle error message as needed
           }

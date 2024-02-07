@@ -8,7 +8,9 @@
         
         <div class="btn-group btn-group-lg me-3" role="group">
             <button type="button" class="btn btn-outline-light" routerLink="/home">Home</button>
-            <div class="btn-group" role="group">
+            <button type="button" class="btn btn-outline-light" routerLink="/category"
+                    *ngIf="utilityService.isLoggedIn() && utilityService.getUserRoleFromLocalStorage()=='Vender'">Category List</button>
+            <div class="btn-group" role="group" *ngIf="utilityService.getUserRoleFromLocalStorage()!='Vender'">
                 <button type="button" class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
                     Categories
                 </button>

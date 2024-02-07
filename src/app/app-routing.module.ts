@@ -12,6 +12,7 @@ import { EWalletComponent } from './e-wallet/e-wallet.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { ProductaddComponent } from './productadd/productadd.component';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'transactions', component: TransactionsComponent},
   {path: 'orderlist', component: ProductaddComponent},
   { path: 'add-product', component: ProductaddComponent },
+  {path: 'category', component: CategoryComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
   

@@ -32,6 +32,7 @@ import { EWalletComponent } from './e-wallet/e-wallet.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { ProductaddComponent } from './productadd/productadd.component';
+import { CategoryComponent } from './category/category.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { ProductaddComponent } from './productadd/productadd.component';
     CheckoutComponent,
     TransactionsComponent,
     ProductaddComponent,
+    CategoryComponent,
   ],
   imports: [
     BrowserModule,

@@ -192,6 +192,25 @@ getTransactionListOfUser(userId: string): Observable<any> {
   deleteProduct(id: string): Observable<any> {
     return this.http.delete<any>(`${this.baseurl2}Product/${id}`);
   }
+  getAllCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.baseurl2}Category`);
+  }
+
+  getCategoryById(id: number): Observable<Category> {
+    return this.http.get<Category>(`${this.baseurl2}/${id}`);
+  }
+
+  addCategory(category: any): Observable<Category> {
+    return this.http.post<Category>(`${this.baseurl2}Category`, category);
+  }
+
+  updateCategory(id: number, category: any): Observable<Category> {
+    return this.http.put<Category>(`${this.baseurl2}Category/${id}`, category);
+  }
+
+  deleteCategory(id: number): Observable<any> {
+    return this.http.delete(`${this.baseurl2}Category/${id}`);
+  }
   // Add new method...
   // addToCart(userid: number, productid: string) {
     // let url = this.baseurl + 'InsertCartItem/' + userid + '/' + productid;
