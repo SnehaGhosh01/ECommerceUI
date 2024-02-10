@@ -126,10 +126,10 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let product of filteredProducts; let i = index">
+      <ng-container *ngFor="let product of filteredProducts; let i = index ">
         <tr>
           <!-- HTML for product row -->
-          <td><img src="../../assets/Images/{{ product.imageUrl }}" alt="Product Image" class="product-image"></td>
+          <td [routerLink]="['/product-details']" [queryParams]="{ id: product.productId }"><img src="../../assets/Images/{{ product.imageUrl }}" alt="Product Image" class="product-image"></td>
           <td>
             <div class="product-name">{{ product.productName.split(' ').slice(0, 30).join(' ') + (product.productName.split(' ').length > 30 ? '...' : '') }}</div>
           </td>

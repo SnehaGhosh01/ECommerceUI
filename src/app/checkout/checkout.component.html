@@ -62,14 +62,14 @@
         <tr *ngFor="let item of cartItems">
           <td>{{ item.productName }}</td>
           <td>{{ item.count }}</td>
-          <td>{{ item.totalPrice | currency }}</td>
+          <td>{{ item.totalPrice | currency:'INR' }}</td>
         </tr>
       </tbody>
     </table>
 
     <!-- Total Cart Value -->
     <div class="total-cart-value">
-      <strong>Total Cart Value:</strong> {{ totalCartValue | currency }}
+      <strong>Total Cart Value:</strong> {{ totalCartValue | currency:'INR' }}
     </div>
 
     <!-- Place Order Button -->

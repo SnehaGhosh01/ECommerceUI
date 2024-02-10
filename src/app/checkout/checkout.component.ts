@@ -95,7 +95,7 @@ export class CheckoutComponent implements OnInit {
     this.navigationService.placeOrder(userId, payment).subscribe(
       (response) => {
         console.log('Place Order Response:', response);
-        alert('Order placed successfully!');
+        alert(response);
         // You can handle the success scenario here
       },
       (error) => {

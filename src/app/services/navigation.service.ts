@@ -211,6 +211,13 @@ getTransactionListOfUser(userId: string): Observable<any> {
   deleteCategory(id: number): Observable<any> {
     return this.http.delete(`${this.baseurl2}Category/${id}`);
   }
+  getAllOrdersOfVender(userId: string): Observable<any> {
+    return this.http.get(`${this.baseurl2}OrderDetails/Vender?userId=${userId}`);
+  }
+
+  getExactOrderOfVender(userId: string, id: string): Observable<any> {
+    return this.http.get(`${this.baseurl2}OrderDetails/VenderExactOrder?userId=${userId}&id=${id}`);
+  }
   // Add new method...
   // addToCart(userid: number, productid: string) {
     // let url = this.baseurl + 'InsertCartItem/' + userid + '/' + productid;

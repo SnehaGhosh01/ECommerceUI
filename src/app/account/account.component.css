@@ -1,5 +1,5 @@
 .card-header{
-    background-color: black;
+    background-color: #4caf50;
 }
 .heading1{
     color: aliceblue;
@@ -7,26 +7,30 @@
 .custom-border {
     border-width: 0px 10px 10px 0; /* top right bottom left */
     border-style: solid;
-    border-color: black;
+    border-color: #4caf50;
   }
   /* Add this style in your global CSS file or in the component's CSS file */
 .custom-button {
-    border: 1px solid black;
+    border: 1px solid #4caf50;
     color: white;
-    background-color: rgb(52, 50, 50);
+    background-color: #4caf50;
   }
   
   .custom-button:hover {
     background-color: white; /* Change the background color on hover */
-    color: black;
+    color: #4caf50;
   }
   .custom-edit{
-    background-color: rgb(106, 104, 104);
-    color: rgb(247, 245, 250);
-    border-width: 10px 10px 00px 0; /* top right bottom left */
+    /* background-color: #4caf50; */
+    color: black;
+    /* border-width: 10px 10px 00px 0; top right bottom left */
     border-style: solid;
-    /* border-color: black; */
+    border-color: #4caf50;
   }
   .custom-edit-header{
     background-color: white;
-    color:black;  }
+    color:#4caf50; }
+.custom-input{
+  border-style: solid;
+  border-color: #4caf50;
+    }
