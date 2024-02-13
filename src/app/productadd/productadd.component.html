@@ -58,24 +58,16 @@
         />
       </div>
       <div class="form-group">
-        <label for="categoryName">Category Name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="categoryName"
-          [(ngModel)]="newProduct.categoryName"
-          name="categoryName"
-        />
+        <label for="categorySelect">Category</label>
+        <select class="form-control" id="categorySelect" [(ngModel)]="newProduct.categoryName" name="categoryName">
+          <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+        </select>
       </div>
       <div class="form-group">
-        <label for="subCategoryName">Subcategory Name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="subCategoryName"
-          [(ngModel)]="newProduct.subCategoryName"
-          name="subCategoryName"
-        />
+        <label for="subcategorySelect">Subcategory</label>
+        <select class="form-control" id="subcategorySelect" [(ngModel)]="newProduct.subCategoryName" name="subCategoryName">
+          <option *ngFor="let subcategory of getSubcategoryNames(newProduct.categoryName)" [value]="subcategory">{{ subcategory }}</option>
+        </select>
       </div>
       <div class="form-group">
         <label for="venderEmail">Vendor Email</label>
@@ -208,25 +200,15 @@
                 </div>
                 <div class="form-group" *ngIf="selectedProduct">
                   <label for="categoryName">Category Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="categoryName"
-                    [(ngModel)]="selectedProduct.categoryName"
-                    name="categoryName"
-                    (ngModelChange)="selectedProduct.categoryName = $event"
-                  />
+                  <select class="form-control" id="categoryName" [(ngModel)]="selectedProduct.categoryName" name="categoryName">
+                    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+                  </select>
                 </div>
                 <div class="form-group" *ngIf="selectedProduct">
                   <label for="subCategoryName">Subcategory Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="subCategoryName"
-                    [ngModel]="selectedProduct.subCategoryName"
-                    name="subCategoryName"
-                    (ngModelChange)="selectedProduct.subCategoryName = $event"
-                  />
+                  <select class="form-control" id="subCategoryName" [(ngModel)]="selectedProduct.subCategoryName" name="subCategoryName">
+                    <option *ngFor="let subcategory of getSubcategoryNames(selectedProduct.categoryName)" [value]="subcategory">{{ subcategory }}</option>
+                  </select>
                 </div>
                 <div class="form-group">
                   <label for="venderEmail">Vendor Email</label>
@@ -237,6 +219,7 @@
                     [ngModel]="selectedProduct?.venderEmail"
                     (ngModelChange)="selectedProduct && (selectedProduct.venderEmail = $event)"
                     name="venderEmail"
+                    disabled
                   />
                 </div>
                 <!-- Save and Cancel buttons -->

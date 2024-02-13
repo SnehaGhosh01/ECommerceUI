@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { NavigationService } from '../services/navigation.service';
 import { UtilityService } from '../services/utility.service';
 import { PlaceOrderDto, ShoppingCartItem } from '../models/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -17,7 +18,7 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private navigationService: NavigationService,
-    private utilityService: UtilityService
+    private utilityService: UtilityService,private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -93,9 +94,10 @@ export class CheckoutComponent implements OnInit {
     debugger;
     // Call your backend API to place the order
     this.navigationService.placeOrder(userId, payment).subscribe(
-      (response) => {
+      (response: any) => {
         console.log('Place Order Response:', response);
         alert(response);
+        this.router.navigate(['/cart']);
         // You can handle the success scenario here
       },
       (error) => {

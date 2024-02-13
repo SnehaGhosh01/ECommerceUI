@@ -1,6 +1,6 @@
 <!-- account.component.html -->
 <div>
-    <button *ngIf="utilityService.getUserRoleFromLocalStorage()==='User'"type="button" class="btn btn-primary ms-2 mt-2" (click)="navigateToEWallet()">E-Wallet</button>
+    <button *ngIf="utilityService.getUserRoleFromLocalStorage()==='User'"type="button" class="btn btn-success ms-2 mt-2" (click)="navigateToEWallet()">E-Wallet</button>
     <button *ngIf="utilityService.getUserRoleFromLocalStorage()==='User'" type="button" class="btn btn-success ms-2 mt-2" (click)="viewTransactionList()">View Transaction List</button>
 </div>
 <div class="container mt-4" [ngClass]="{'custom-border': !isEditMode, 'other-styles': isEditMode}">

@@ -17,7 +17,7 @@
           {{ groupedOrder.orderId }}
         </td>
         <td>{{ groupedOrder.orderDate | date: 'short' }}</td>
-        <td>{{ groupedOrder.grandTotal | currency }}</td>
+        <td>{{ groupedOrder.grandTotal | currency:'INR' }}</td>
         <!-- Add other relevant columns as needed -->
       </tr>
     </tbody>
@@ -38,7 +38,7 @@
         <p class="mb-2"><strong>Name:</strong> {{ selectedOrder[0].name }}</p>
         <p class="mb-2"><strong>Shipping Address:</strong> {{ selectedOrder[0].shippingAddress }}</p>
         <p class="mb-2"><strong>Mobile Number:</strong> {{ selectedOrder[0].mobile }}</p>
-        <p class="mb-0"><strong>Grand Total:</strong> {{ selectedOrder[0].grandTotal | currency }}</p>
+        <p class="mb-0"><strong>Grand Total:</strong> {{ selectedOrder[0].grandTotal | currency:'INR' }}</p>
         <!-- Add other relevant order details as needed -->
       </div>
     </div>
@@ -63,7 +63,7 @@
             <td><img src="../../assets/Images/{{product.imageUrl}}" alt="" class="mr-3" style="max-width: 100px; max-height: 100px;"></td>
             <td>{{ product.productName }}</td>
             <td>{{ product.count }}</td>
-            <td>{{ product.totalPrice | currency }}</td>
+            <td>{{ product.totalPrice | currency:'INR' }}</td>
             <!-- Add other relevant columns as needed -->
           </tr>
         </tbody>

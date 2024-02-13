@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams,HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 
 import {
@@ -156,8 +156,18 @@ export class NavigationService {
   }
   placeOrder(userId: string, payment: any): Observable<any> {
     const url = `${this.baseurl2}OrderDetails?userId=${userId}`;
-  
-    return this.http.post(url,(payment));
+    
+    // Set the content type to application/json
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      // Set responseType to 'text' to prevent JSON parsing
+      responseType: 'text' as 'json'
+    };
+
+    // Make the HTTP POST request with the payment data as the request body
+    return this.http.post(url, payment, httpOptions);
   }
   
 

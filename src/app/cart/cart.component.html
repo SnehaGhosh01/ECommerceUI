@@ -1,9 +1,9 @@
 <!-- cart.component.html -->
 <div *ngIf="utilityService.isLoggedIn()" class="container mt-4">
 <div class="container mt-4">
-  <h2>Items In Your Cart</h2>
+  <h2 class="custom-heading">Items In Your Cart</h2>
   <div class="total-cart-value">
-    <h4>Total Cart Value: {{ totalCartValue | currency }}</h4>
+    <h4>Total Cart Value: {{ totalCartValue | currency:'INR' }}</h4>
   </div>
   <div *ngIf="cartItems.length > 0; else emptyCart">
     <div *ngFor="let item of cartItems" class="card mb-3">
@@ -18,7 +18,7 @@
         <!-- Details on the right with padding -->
         <div style="padding-left: 20px;">
           <h5 class="card-title">{{ item.productName }}</h5>
-          <p class="card-text">Price: {{ item.price | currency }}</p>
+          <p class="card-text">Price: {{ item.price | currency:'INR' }}</p>
           <p class="card-text">Quantity: {{ item.count }}</p>
           <p class="card-text">Total Amount: {{ item.totalPrice }}</p>
 
@@ -44,7 +44,7 @@
   </div>
 
   <ng-template #emptyCart>
-    <p>Your cart is empty.</p>
+    <h3 class="text-center custom-heading">Your cart is empty.</h3>
   </ng-template>
 </div>
 </div>

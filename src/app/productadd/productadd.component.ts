@@ -92,8 +92,9 @@ export class ProductaddComponent implements OnInit {
   }
  
   cancelAdd(): void {
-    this.isAddMode = false; // Turn off add mode
-    this.newProduct = new Product4(); // Reset newProduct
+    this.isAddMode = false; 
+    this.isEditMode=!this.isEditMode;// Turn off add mode
+    //this.newProduct = new Product4(); // Reset newProduct
   }
 addProductForm(){
   this.isAddMode = !this.isAddMode;

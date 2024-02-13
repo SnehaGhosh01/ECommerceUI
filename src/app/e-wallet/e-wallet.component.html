@@ -50,7 +50,16 @@
             [(ngModel)]="rechargeData.cardNumber"
             required
             pattern="[0-9]{16}"
+            #cardNumber="ngModel"
           />
+          <div *ngIf="cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)" class="text-danger">
+            <div *ngIf="cardNumber.errors && cardNumber.errors['required']">
+              Card number is required
+            </div>
+            <div *ngIf="cardNumber.errors && cardNumber.errors['pattern']">
+              Card number must contain 16 digits
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="cvvNumber" class="form-label">CVV</label>
@@ -62,7 +71,16 @@
             [(ngModel)]="rechargeData.cvvNumber"
             required
             pattern="[0-9]{3}"
+            #cvvNumber="ngModel"
           />
+          <div *ngIf="cvvNumber.invalid && (cvvNumber.dirty || cvvNumber.touched)" class="text-danger">
+            <div *ngIf="cvvNumber.errors && cvvNumber.errors['required']">
+              Card number is required
+            </div>
+            <div *ngIf="cvvNumber.errors && cvvNumber.errors['pattern']">
+              CVV number must contain 3 digits
+            </div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="cardHolderName" class="form-label">Card Holder Name</label>
@@ -73,41 +91,40 @@
             class="form-control"
             [(ngModel)]="rechargeData.cardHolderName"
             required
+            #cardHolderName="ngModel"
           />
+          <div *ngIf="cardHolderName.invalid && (cardHolderName.dirty || cardHolderName.touched)" class="text-danger">
+            Card Holder Name is required
+          </div>
         </div>
         <div class="mb-3">
           <label for="amount" class="form-label">Amount</label>
           <input
-            type="text"
+            type="number"
             id="amount"
             name="amount"
             class="form-control"
             [(ngModel)]="rechargeData.amount"
             required
+            min="1"
+            #amount="ngModel"
           />
-          <div
-            *ngIf="
-              rechargeForm.controls['amount'].invalid &&
-              (rechargeForm.controls['amount'].dirty ||
-                rechargeForm.controls['amount'].touched)
-            "
-            class="text-danger"
-          >
-            <div *ngIf="rechargeForm.controls['amount'].errors?.['required']">
+          <div *ngIf="amount.invalid && (amount.dirty || amount.touched)" class="text-danger">
+            <div *ngIf="amount.errors && amount.errors['required']">
               Amount is required
+            </div>
+            <div *ngIf="amount.errors && amount.errors['min']">
+              Amount must be greater than 0
             </div>
           </div>
         </div>
-        <button
-          type="submit"
-          class="btn btn-primary custom-button"
-          [disabled]="rechargeForm.invalid"
-        >
+        <button type="submit" class="btn btn-primary custom-button" [disabled]="rechargeForm.invalid">
           Recharge
         </button>
       </form>
     </div>
   </div>
+  
 
 
   <!-- Registration Form -->
