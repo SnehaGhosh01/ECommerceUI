@@ -33,16 +33,14 @@
 
                 <div class="card-body">
                     <h1 class="card-title text-success">
-                        {{product.price}}
+                        {{product.price | currency:'INR'}}
                     </h1>
-                    <h4 class="card-subtitle text-danger text-decoration-line-through">
-                        {{product.price}}
-                    </h4>
+                    
                 </div>
                 <div class="card-body">
                     <h6 class="card-subtitle my-2 text-primary"> {{product.stock}} products are available. </h6>
-                    <div class="d-grid gap-2">
-                        <button type="button" class="btn btn-outline-success" [disabled]="!utilityService.isLoggedIn() || utilityService.getUserRoleFromLocalStorage()=='Vender'"
+                    <div class="d-grid gap-2" *ngIf="utilityService.getUserRoleFromLocalStorage()!='Vender'">
+                        <button type="button" class="btn btn-outline-success" [disabled]="!utilityService.isLoggedIn()"
                                 (click)="this.utilityService.addToCart(product)">Add to Cart
                             <span *ngIf="!utilityService.isLoggedIn()">(Login First)</span>
                         </button>

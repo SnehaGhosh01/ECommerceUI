@@ -4,9 +4,6 @@ import { Observable, map } from 'rxjs';
 
 import {
   Category,
-  Order,
-  Payment,
-  PaymentMethod,
   ShoppingCartItem,
   User,
   UserRegistration,
@@ -243,28 +240,4 @@ getTransactionListOfUser(userId: string): Observable<any> {
     // return this.http.post(url, null, { responseType: 'text' });
   // }
 
-  getActiveCartOfUser(userid: number) {
-    let url = this.baseurl + 'GetActiveCartOfUser/' + userid;
-    return this.http.get(url);
-  }
-
-  getAllPreviousCarts(userid: number) {
-    let url = this.baseurl + 'GetAllPreviousCartsOfUser/' + userid;
-    return this.http.get(url);
-  }
-
-  getPaymentMethods() {
-    let url = this.baseurl + 'GetPaymentMethods';
-    return this.http.get<PaymentMethod[]>(url);
-  }
-
-  insertPayment(payment: Payment) {
-    return this.http.post(this.baseurl + 'InsertPayment', payment, {
-      responseType: 'text',
-    });
-  }
-
-  insertOrder(order: Order) {
-    return this.http.post(this.baseurl + 'InsertOrder', order);
-  }
 }

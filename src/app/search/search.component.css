@@ -1,28 +1,38 @@
-.search-bar{
-    background-color: bg-dark;
-    color: white;
-    
-}
-mat-form-field {
-    width: 542px !important; /* Set the desired width */
-    height: 59px !important;
-    
-  }
-.mat-input-element {
-    color:black;
-    background-color: #fff; 
-    border-radius: 8px; 
-    border: 0px solid #ccc; 
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); 
-    height: 30px;
-  }
- 
-  .mat-form-field.mat-focused .mat-form-field-underline {
-    background-color: #007bff; /* Line color when focused */
-  }
- 
+/* search.component.css */
+.search-bar {
+  position: relative;
   
-  /* Style the placeholder text */
-  ::placeholder {
-    color: #131212; /* Placeholder text color */
-  }
+}
+.input-group>.form-control{
+  width:400px !important;
+}
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-top: none;
+}
+
+.autocomplete-dropdown ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.autocomplete-dropdown li {
+  cursor: pointer;
+}
+
+.autocomplete-dropdown li:hover {
+  background-color: #f8f9fa;
+}
+
+.input-group-text img {
+  width: 20px; /* Adjust icon size as needed */
+  height: 24px;
+ 
+}

@@ -1,21 +1,23 @@
+<div class="input-group mb-3">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Search"
+    [(ngModel)]="searchQuery"
+    (input)="search()"
+    (keydown.enter)="handleSearch()"
+  />
+  <div class="input-group-append" (click)="handleSearch()">
+    <span class="input-group-text">
+      <img src="../../assets/Images/search/search.svg" alt="Search icon">
+    </span>
+  </div>
 
-<!-- search.component.html -->
-
-<div class="search-bar">
-  <mat-form-field class="example-full-width">
-    <input
-  matInput
-  placeholder="Search"
-  [(ngModel)]="searchQuery"
-  [matAutocomplete]="auto"
-  (input)="search()"
-  (keydown.enter)="handleEnterKey($event)"
-/>
-
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="optionSelected($event)">
-      <mat-option *ngFor="let result of searchResults" [value]="result">
-        {{ result.productName }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+<div *ngIf="showAutocomplete" class="autocomplete-dropdown">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let result of searchResults" (click)="optionSelected(result)">
+      {{ result.productName.substring(0,15) }}
+    </li>
+  </ul>
+</div>
 </div>

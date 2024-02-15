@@ -64,11 +64,7 @@ export interface UserRegistration {
 
 // #region Product
 
-export interface Offer {
-  id: number;
-  title: string;
-  discount: number;
-}
+
 
 export interface Category {
   id: number;
@@ -79,16 +75,7 @@ export interface ApplicationCategory {
   id: number;
   category: string;
 }
-export interface Product {
-  id: number;
-  title: string;
-  description: string;
-  productCategory: Category;
-  offer: Offer;
-  price: number;
-  quantity: number;
-  imageName: string;
-}
+
 export interface Product2 {
   productId: string;
   productName: string;
@@ -139,30 +126,14 @@ export interface GroupedProduct {
   subcategory: string;
   items: Product3[];
 }
-export interface Review {
-  id: number;
-  user: User;
-  product: Product;
-  value: string;
-  createdAt: string;
-}
 
 // #endregion
 
 // #region Cart
 
-export interface CartItem {
-  id: number;
-  product: Product;
-}
 
-export interface Cart {
-  id: number;
-  user: User;
-  cartItems: CartItem[];
-  ordered: boolean;
-  orderedOn: string;
-}
+
+
 
 // #endregion
 
@@ -187,12 +158,6 @@ export interface Payment {
   createdAt: string;
 }
 
-export interface Order {
-  id: number;
-  user: User;
-  cart: Cart;
-  payment: Payment;
-  createdAt: string;
-}
+
 
 // #endregion

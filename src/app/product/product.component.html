@@ -26,11 +26,11 @@
                 {{product.price}}
             </h6>-->
             <h2 class="card-title text-success">
-                {{product.price}}
+                {{product.price | currency:'INR'}}
             </h2>
         </div>
 
-        <div class="card-footer d-grid gap-2">
+        <div class="card-footer d-grid gap-2" *ngIf="utilityService.getUserRoleFromLocalStorage()!='Vender'">
             <button type="button" class="btn btn-outline-success" [disabled]="!utilityService.isLoggedIn()"
                     (click)="this.utilityService.addToCart(product)">
                 Add to Cart
@@ -69,11 +69,11 @@
                         {{product.price}}
                     </h5>-->
                     <h2 class="card-title text-success">
-                        {{product.price}}
+                        {{product.price | currency:'INR'}}
                     </h2>
                 </div>
 
-                <div class="card-footer text-muted d-grid gap-2">
+                <div class="card-footer text-muted d-grid gap-2" *ngIf="utilityService.getUserRoleFromLocalStorage()!='Vender'">
                     <button type="button" class="btn btn-outline-success" [disabled]="!utilityService.isLoggedIn()"
                             (click)="this.utilityService.addToCart(product)">
                         Add to Cart
@@ -81,49 +81,6 @@
                     </button>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<!-- Cart Item View -->
-<div class="cart-item-view" *ngIf="view === 'currcartitem'">
-    <div class="card">
-        <div class="row g-0">
-
-            <div class="col-4 overflow-hidden d-flex justify-content-center align-items-center">
-               <!-- <img src="../../assets/Images/{{product.productCategory.subCategory}}/{{product.id}}/1.jpg"-->
-               <img src="{{product.imageUrl}}"
-                     class="img-fluid rounded-start" alt="Product Image" OpenProductDetails [productId]="product.productId">
-            </div>
-            <div class="col-8">
-                <div class="card-body">
-                    <h5 class="card-title title"> {{product.productName}} </h5>
-                    <!--<h5 class="card-title text-success">
-                        {{utilityService.applyDiscount(product.price, product.offer.discount)}}
-                        <span class="text-primary"> -{{product.offer.discount}}% </span>
-                    </h5>
-                    <h6 class="card-subtitle text-danger text-decoration-line-through">
-                        {{ product.price }}
-                    </h6>-->
-                    <h5 class="card-title text-success">{{product.price}}</h5>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<div class="cart-item-view" *ngIf="view === 'prevcartitem'">
-    <div class="card text-center">
-
-        <div class="overflow-hidden d-flex justify-content-center align-items-center">
-            <img *ngIf="product?.imageUrl && product?.productId"
-         src="{{ product.imageUrl }}"
-         class="img-fluid rounded-start" alt="Product Image" OpenProductDetails [productId]="product.productId">
-        </div>
-
-        <div class="card-body">
-            <h5 class="card-title title"> {{product.productName}} </h5>
         </div>
     </div>
 </div>
