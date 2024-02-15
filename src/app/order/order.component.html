@@ -33,6 +33,7 @@
     <div class="card-body">
       
       <div class="order-detail">
+        <button (click)="cancelOrder(selectedOrder[0].orderId)">Cancel Order</button>
         <p class="mb-2"><strong>Order ID:</strong> {{ selectedOrder[0].orderId }}</p>
         <p class="mb-2"><strong>Order Date:</strong> {{ selectedOrder[0].orderDate | date: 'medium' }}</p>
         <p class="mb-2"><strong>Name:</strong> {{ selectedOrder[0].name }}</p>

@@ -1,26 +1,43 @@
 <!-- account.component.html -->
 <div>
-    <button *ngIf="utilityService.getUserRoleFromLocalStorage()==='User'"type="button" class="btn btn-success ms-2 mt-2" (click)="navigateToEWallet()">E-Wallet</button>
-    <button *ngIf="utilityService.getUserRoleFromLocalStorage()==='User'" type="button" class="btn btn-success ms-2 mt-2" (click)="viewTransactionList()">View Transaction List</button>
+  <button *ngIf="utilityService.getUserRoleFromLocalStorage()==='User'" type="button" class="btn btn-success ms-2 mt-2" (click)="navigateToEWallet()">E-Wallet</button>
+  <button *ngIf="utilityService.getUserRoleFromLocalStorage()==='User'" type="button" class="btn btn-success ms-2 mt-2" (click)="viewTransactionList()">View Transaction List</button>
 </div>
-<div class="container mt-4" [ngClass]="{'custom-border': !isEditMode, 'other-styles': isEditMode}">
-    <div class="card">
+<div class="container mt-4">
+  <div class="card">
       <div class="card-header">
-        <h3 id="heading1" [style.color]="'white'">Your Account Details {{ accountDetails?.name }}</h3>
-        
+          <h3 id="heading1">Your Account Details {{ accountDetails?.name }}</h3>
       </div>
       <div class="card-body">
-        <div *ngIf="!isEditMode">
-          <!-- Display account details -->
-          <p><strong>Name:</strong> {{ accountDetails?.name }}</p>
-          <p><strong>Email:</strong> {{ accountDetails?.email }}</p>
-          <p><strong>Address:</strong> {{ accountDetails?.address }}</p>
-          <p><strong>Phone Number:</strong> {{ accountDetails?.phone_Number }}</p>
-          <!-- Add more details as needed -->
-          <button type="button" class="btn btn-outline-primary custom-button" (click)="enterEditMode()">Edit Profile</button>
-        </div>
+          <div *ngIf="!isEditMode">
+              <!-- Display account details -->
+              <table class="table table-bordered">
+                  <tbody>
+                      <tr>
+                          <td><strong>Name:</strong></td>
+                          <td>{{ accountDetails?.name }}</td>
+                      </tr>
+                      <tr>
+                          <td><strong>Email:</strong></td>
+                          <td>{{ accountDetails?.email }}</td>
+                      </tr>
+                      <tr>
+                          <td><strong>Address:</strong></td>
+                          <td>{{ accountDetails?.address }}</td>
+                      </tr>
+                      <tr>
+                          <td><strong>Phone Number:</strong></td>
+                          <td>{{ accountDetails?.phone_Number }}</td>
+                      </tr>
+                      <!-- Add more details as needed -->
+                  </tbody>
+              </table>
+              <button type="button" class="btn btn-outline-primary custom-button" (click)="enterEditMode()">Edit Profile</button>
+          </div>
       </div>
-    </div>
+  </div>
+
+
   
     <!-- Edit Form Card -->
     <div *ngIf="isEditMode" class="card mt-4 custom-edit">

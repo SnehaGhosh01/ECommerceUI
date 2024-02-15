@@ -169,8 +169,17 @@ export class NavigationService {
     // Make the HTTP POST request with the payment data as the request body
     return this.http.post(url, payment, httpOptions);
   }
-  
-
+  cancelOrder(userId: string, orderId: string): Observable<any> {
+    const url = `${this.baseurl2}OrderDetails?userId=${userId}&orderId=${orderId}`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      // Set responseType to 'text' to prevent JSON parsing
+      responseType: 'text' as 'json'
+    };
+    return this.http.delete<any>(url, httpOptions); // Pass httpOptions to the delete method
+  }
   getAllOrders(userId: string): Observable<any> {
     const url = `${this.baseurl2}OrderDetails?userId=${userId}`;
     return this.http.get(url);

@@ -35,7 +35,6 @@ import { ProductaddComponent } from './productadd/productadd.component';
 import { CategoryComponent } from './category/category.component';
 import { OrderlistComponent } from './orderlist/orderlist.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

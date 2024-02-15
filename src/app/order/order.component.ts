@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavigationService } from '../services/navigation.service';
 import { UtilityService } from '../services/utility.service';
 
@@ -12,14 +12,15 @@ export class OrderComponent implements OnInit {
   userId: any;
   orders: any[] = [];
   selectedOrder: any;
-  groupedOrders: any[] = [];  // Add this to store grouped orders
+  groupedOrders: any[] = [];  
   uniqueOrderIds: Set<string> = new Set<string>();
-  uniqueOrderIdsArray: string[] = [];  // Declare an array to hold the order IDs
+  uniqueOrderIdsArray: string[] = [];  
 
   constructor(
     private navigationService: NavigationService,
     private route: ActivatedRoute,
-    private utility: UtilityService
+    private utility: UtilityService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +28,7 @@ export class OrderComponent implements OnInit {
 
     this.navigationService.getAllOrders(this.userId).subscribe((orders) => {
       this.orders = orders;
-      this.groupOrdersByOrderId();  // Call the method to group orders
+      this.groupOrdersByOrderId();  
     });
 
     this.route.params.subscribe((params) => {
@@ -46,14 +47,11 @@ export class OrderComponent implements OnInit {
     });
   }
 
-  // Method to extract unique order IDs
   getUniqueOrderIds(products: any[]): void {
-    // Extract unique order IDs from products
     this.uniqueOrderIds = new Set(products.map(product => product.orderId));
     this.uniqueOrderIdsArray = Array.from(this.uniqueOrderIds);
   }
 
-  // Method to group products by order ID
   groupOrdersByOrderId(): void {
     const groupedOrdersMap = new Map<string, any>();
   
@@ -70,12 +68,25 @@ export class OrderComponent implements OnInit {
       }
     });
   
-    // Convert the map to an array of objects
     this.groupedOrders = Array.from(groupedOrdersMap.entries()).map(([orderId, orders]) => ({
       orderId,
-      orderDate: orders[0].orderDate,  // You might want to adjust this based on your data structure
-      grandTotal: orders[0].grandTotal,  // You might want to adjust this based on your data structure
+      orderDate: orders[0].orderDate,  
+      grandTotal: orders[0].grandTotal,  
       products: orders,
     }));
+  }
+
+  cancelOrder(orderId: string): void {
+    this.navigationService.cancelOrder(this.userId, orderId).subscribe(
+      (res:any) => {
+        console.log('Order canceled successfully:', res);
+        // After cancellation, you may want to reload orders or update UI accordingly
+        alert(res);
+        this.router.navigate(['/orders']);
+      },
+      (error) => {
+        console.error('Error canceling order:', error);
+      }
+    );
   }
 }
