@@ -13,7 +13,7 @@ import {
   providedIn: 'root',
 })
 export class NavigationService {
-  baseurl = 'https://localhost:7149/api/Shopping/';
+  
   baseurl2 = 'http://localhost:5073/api/';
 
   constructor(private http: HttpClient) {}
@@ -102,25 +102,9 @@ export class NavigationService {
     );
   }
 
-  submitReview(userid: number, productid: number, review: string) {
-    let obj: any = {
-      User: {
-        Id: userid,
-      },
-      Product: {
-        Id: productid,
-      },
-      Value: review,
-    };
+  
 
-    let url = this.baseurl + 'InsertReview';
-    return this.http.post(url, obj, { responseType: 'text' });
-  }
-
-  getAllReviewsOfProduct(productId: number) {
-    let url = this.baseurl + 'GetProductReviews/' + productId;
-    return this.http.get(url);
-  }
+  
 
   getAllCartItems(userId: string): Observable<ShoppingCartItem[]> {
     const url = `${this.baseurl2}ShoppingCart?userId=${userId}`;

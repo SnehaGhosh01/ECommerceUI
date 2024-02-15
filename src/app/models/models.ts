@@ -127,37 +127,4 @@ export interface GroupedProduct {
   items: Product3[];
 }
 
-// #endregion
 
-// #region Cart
-
-
-
-
-
-// #endregion
-
-// #region Payment and Orders
-
-export interface PaymentMethod {
-  id: number;
-  type: string;
-  provider: string;
-  available: boolean;
-  reason: string;
-}
-
-export interface Payment {
-  id: number;
-  user: User;
-  paymentMethod: PaymentMethod;
-  totalAmount: number;
-  shipingCharges: number;
-  amountReduced: number;
-  amountPaid: number;
-  createdAt: string;
-}
-
-
-
-// #endregion
