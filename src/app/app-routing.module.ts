@@ -14,6 +14,7 @@ import { TransactionsComponent } from './transactions/transactions.component';
 import { ProductaddComponent } from './productadd/productadd.component';
 import { CategoryComponent } from './category/category.component';
 import { OrderlistComponent } from './orderlist/orderlist.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'orderlist/:orderId', component: OrderlistComponent},
   { path: 'add-product', component: ProductaddComponent },
   {path: 'category', component: CategoryComponent},
+  { path: 'reset-password', component: ResetPasswordComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
   

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -17,12 +17,14 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   message = '';
+  showloginfoem=true;
 
   constructor(
     private fb: FormBuilder,
     private navigationService: NavigationService,
     private utilityService: UtilityService,
-    private router: Router
+    private router: Router,
+    private elementRef: ElementRef
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +45,7 @@ export class LoginComponent implements OnInit {
     this.navigationService
       .loginUser(this.Email.value, this.PWD.value)
       .subscribe((res: any) => {
-        if (res.toString() !== 'invalid') {
+        if (res.toString() !== 'Username or password incorrect') {
           this.message = 'Logged In Successfully.';
           this.utilityService.setUser(res);
           console.log(this.utilityService.getUser());
@@ -53,7 +55,14 @@ export class LoginComponent implements OnInit {
         }
       });
   }
-
+  closeLoginModal() {
+    // Use nativeElement to find the login modal and close it
+    const modal = this.elementRef.nativeElement.querySelector('#loginModal');
+    modal.modal('hide');
+  }
+toggole(){
+  this.showloginfoem=!this.showloginfoem;
+}
   get Email(): FormControl {
     return this.loginForm.get('email') as FormControl;
   }

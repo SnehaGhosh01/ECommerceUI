@@ -120,6 +120,20 @@ export class NavigationService {
     const url = `${this.baseurl2}ShoppingCart/${productId}?userId=${userId}`;
     return this.http.delete(url);
   }
+  resetPassword(email: string, token: string, password: string): Observable<any> {
+    const url = `${this.baseurl2}Auth/reset-password`;
+    const params = {
+      email: email,
+      token: token,
+      newPassword: password
+    };
+
+    return this.http.get(url, { params, responseType: 'text' });
+  }
+  
+  forgotPassword(email: string): Observable<any> {
+    return this.http.post<any>(`${this.baseurl2}Auth/ForgotPassword`, { email });
+  }
 
   updateItemCountPlus(userId: string, productId: string): Observable<any> {
     const url = `${this.baseurl2}ShoppingCart/IncreaseCountByone/${productId}?userId=${userId}`;

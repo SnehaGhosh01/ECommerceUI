@@ -13,6 +13,7 @@ import { NavigationService } from '../services/navigation.service';
 import { UtilityService } from '../services/utility.service';
 import { Router } from '@angular/router';
 import { CartComponent } from '../cart/cart.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-header',
@@ -69,4 +70,9 @@ export class HeaderComponent implements OnInit {
 
     this.container.createComponent(componentType);
   }
+  closeModal() {
+    this.container.clear();
+  }
+ 
 }
+

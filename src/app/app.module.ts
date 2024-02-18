@@ -34,6 +34,9 @@ import { TransactionsComponent } from './transactions/transactions.component';
 import { ProductaddComponent } from './productadd/productadd.component';
 import { CategoryComponent } from './category/category.component';
 import { OrderlistComponent } from './orderlist/orderlist.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,8 @@ import { OrderlistComponent } from './orderlist/orderlist.component';
     ProductaddComponent,
     CategoryComponent,
     OrderlistComponent,
+    ResetPasswordComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +75,8 @@ import { OrderlistComponent } from './orderlist/orderlist.component';
     FormsModule,
     MatAutocompleteModule,
     MatInputModule,
+    MatDialogModule,
+    
     MatFormFieldModule,
     MatIconModule,
     JwtModule.forRoot({
