@@ -15,6 +15,7 @@ import { ProductaddComponent } from './productadd/productadd.component';
 import { CategoryComponent } from './category/category.component';
 import { OrderlistComponent } from './orderlist/orderlist.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'add-product', component: ProductaddComponent },
   {path: 'category', component: CategoryComponent},
   { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
   

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationService } from '../services/navigation.service';
 
 @Component({
@@ -6,12 +6,26 @@ import { NavigationService } from '../services/navigation.service';
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.css']
 })
-export class ForgotPasswordComponent {
+export class ForgotPasswordComponent implements OnInit{
   email!: string;
+  private reloadFlag = false;
 
-  constructor(private authService: NavigationService ) { }
-
+  constructor(private authService: NavigationService ) { 
+   
+  }
+  ngOnInit(): void {
+   
+      this.ReloadPageOnce();
+    
+  }
+ReloadPageOnce(){
+  if(this.reloadFlag){
+    return;
+  }
+  
+}
   onSubmit(): void {
+    
     if (!this.email) {
       // Handle empty email
       return;

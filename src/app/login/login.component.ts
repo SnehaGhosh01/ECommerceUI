@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -8,6 +8,8 @@ import {
 import { NavigationService } from '../services/navigation.service';
 import { UtilityService } from '../services/utility.service';
 import { Router } from '@angular/router';
+import * as $ from 'jquery';
+
 
 @Component({
   selector: 'app-login',
@@ -15,6 +17,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  @ViewChild('forgotPasswordModal') forgotPasswordModal!: ElementRef;
   loginForm!: FormGroup;
   message = '';
   showloginfoem=true;
@@ -24,6 +27,7 @@ export class LoginComponent implements OnInit {
     private navigationService: NavigationService,
     private utilityService: UtilityService,
     private router: Router,
+    private renderer: Renderer2,
     private elementRef: ElementRef
   ) {}
 
@@ -50,6 +54,7 @@ export class LoginComponent implements OnInit {
           this.utilityService.setUser(res);
           console.log(this.utilityService.getUser());
           console.log(res);
+          this.closeLoginModal();
         } else {
           this.message = 'Invalid Credentials!';
         }
@@ -57,8 +62,19 @@ export class LoginComponent implements OnInit {
   }
   closeLoginModal() {
     // Use nativeElement to find the login modal and close it
-    const modal = this.elementRef.nativeElement.querySelector('#loginModal');
-    modal.modal('hide');
+    window.location.reload();
+  }
+  openForgotPasswordModal(): void {
+    const modal = this.forgotPasswordModal.nativeElement;
+    if (modal) {
+      this.renderer.addClass(modal, 'show');
+      this.renderer.setStyle(modal, 'display', 'block');
+    }
+  }
+  navigateToForgotPassword(): void {
+   
+    this.router.navigate(['/forgot-password']);
+    
   }
 toggole(){
   this.showloginfoem=!this.showloginfoem;
