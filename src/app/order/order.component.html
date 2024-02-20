@@ -7,6 +7,7 @@
         <th>Order ID</th>
         <th>Order Date</th>
         <th>Grand Total</th>
+        <th>Order Status</th>
         <!-- Add other relevant columns as needed -->
       </tr>
     </thead>
@@ -18,6 +19,7 @@
         </td>
         <td>{{ groupedOrder.orderDate | date: 'short' }}</td>
         <td>{{ groupedOrder.grandTotal | currency:'INR' }}</td>
+        <td>{{ groupedOrder.orderStatus }}</td>
         <!-- Add other relevant columns as needed -->
       </tr>
     </tbody>
@@ -33,13 +35,15 @@
     <div class="card-body">
       
       <div class="order-detail">
-        <button (click)="cancelOrder(selectedOrder[0].orderId)">Cancel Order</button>
+        
         <p class="mb-2"><strong>Order ID:</strong> {{ selectedOrder[0].orderId }}</p>
         <p class="mb-2"><strong>Order Date:</strong> {{ selectedOrder[0].orderDate | date: 'medium' }}</p>
         <p class="mb-2"><strong>Name:</strong> {{ selectedOrder[0].name }}</p>
         <p class="mb-2"><strong>Shipping Address:</strong> {{ selectedOrder[0].shippingAddress }}</p>
         <p class="mb-2"><strong>Mobile Number:</strong> {{ selectedOrder[0].mobile }}</p>
         <p class="mb-0"><strong>Grand Total:</strong> {{ selectedOrder[0].grandTotal | currency:'INR' }}</p>
+        <p class="mb-0"><strong>Order Status:</strong> {{ selectedOrder[0].orderStatus }}</p>
+        <button *ngIf="!selectedOrder[0].orderStatus.includes('Cancelled')" type="button" class="btn btn-danger" (click)="cancelOrder(selectedOrder[0].orderId)">Cancel Order</button>
         <!-- Add other relevant order details as needed -->
       </div>
     </div>

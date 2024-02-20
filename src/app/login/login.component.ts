@@ -8,7 +8,7 @@ import {
 import { NavigationService } from '../services/navigation.service';
 import { UtilityService } from '../services/utility.service';
 import { Router } from '@angular/router';
-import * as $ from 'jquery';
+
 
 
 @Component({
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   message = '';
   showloginfoem=true;
+  showforget=false;
 
   constructor(
     private fb: FormBuilder,
@@ -64,21 +65,13 @@ export class LoginComponent implements OnInit {
     // Use nativeElement to find the login modal and close it
     window.location.reload();
   }
-  openForgotPasswordModal(): void {
-    const modal = this.forgotPasswordModal.nativeElement;
-    if (modal) {
-      this.renderer.addClass(modal, 'show');
-      this.renderer.setStyle(modal, 'display', 'block');
-    }
-  }
+ 
   navigateToForgotPassword(): void {
-   
-    this.router.navigate(['/forgot-password']);
-    
-  }
-toggole(){
+  this.message = '';
   this.showloginfoem=!this.showloginfoem;
-}
+  this.showforget=!this.showforget; 
+  }
+
   get Email(): FormControl {
     return this.loginForm.get('email') as FormControl;
   }

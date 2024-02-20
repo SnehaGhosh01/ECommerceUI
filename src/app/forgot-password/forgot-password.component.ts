@@ -6,24 +6,15 @@ import { NavigationService } from '../services/navigation.service';
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.css']
 })
-export class ForgotPasswordComponent implements OnInit{
+export class ForgotPasswordComponent{
   email!: string;
   private reloadFlag = false;
 
   constructor(private authService: NavigationService ) { 
    
   }
-  ngOnInit(): void {
-   
-      this.ReloadPageOnce();
-    
-  }
-ReloadPageOnce(){
-  if(this.reloadFlag){
-    return;
-  }
   
-}
+
   onSubmit(): void {
     
     if (!this.email) {
@@ -32,11 +23,14 @@ ReloadPageOnce(){
     }
     this.authService.forgotPassword(this.email).subscribe(
       () => {
+        alert('Password reset link sent successfully');
         // Password reset link sent successfully
         console.log('Password reset link sent successfully');
+        //window.location.reload();
       },
       (error) => {
         // Handle error
+        alert('Failed to send password reset link');
         console.error('Failed to send password reset link', error);
       }
     );

@@ -31,7 +31,27 @@ export class OrderlistComponent implements OnInit {
       }
     });
   }
-
+  updateOrderStatus(orderId: string, newStatus: string): void {
+    // Check if order details exist
+    if (this.orderDetails.length > 0) {
+      // Call API to update order status
+      this.navigationService.updateOrderStatus(orderId, newStatus)
+        .subscribe(
+          (response) => {
+            console.log(`Order status updated to ${newStatus} successfully.`);
+            // Alert the response from the API
+            alert(response);
+            // Reload order details after updating status
+            this.showOrderDetails(orderId);
+          },
+          (error) => {
+            console.error('Error updating order status:', error);
+            // Optionally, you can notify the user about the error
+          }
+        );
+    }
+  }
+  
   loadOrders() {
     this.userId = this.utility.getUserIdFromLocalStorage();
     this.navigationService.getAllOrdersOfVender(this.userId)

@@ -6,6 +6,8 @@
         <th>Order ID</th>
         <th>Order Date</th>
         <th>Grand Total</th>
+        <th>Order Status</th>
+        
         <!-- Add other relevant columns as needed -->
       </tr>
     </thead>
@@ -17,6 +19,9 @@
         </td>
         <td>{{ order.orderDate | date: 'short' }}</td>
         <td>{{ order.grandTotal | currency: 'INR' }}</td>
+        <td>{{ order.orderStatus }}</td>
+        
+          
         <!-- Add other relevant columns as needed -->
       </tr>
     </tbody>
@@ -24,7 +29,7 @@
   </div>
   
   
-  <div *ngIf="selectedOrderId">
+  <div *ngIf="selectedOrderId && orderDetails.length > 0">
     <h2 class="mt-4 mb-3 text-center">Order Details - {{ orderDetails[0].orderId}}</h2>
     <div class="card custom-card">
         <div class="card-body">
@@ -37,6 +42,9 @@
             <p class="mb-2"><strong>Mobile Number:</strong> {{ orderDetails[0].mobile }}</p>
             <p class="mb-0"><strong>Grand Total:</strong> {{ orderDetails[0].grandTotal | currency: 'INR' }}</p>
             <!-- Add other relevant order details as needed -->
+            <button *ngIf="orderDetails[0].orderStatus === 'OrderPlaced'" (click)="updateOrderStatus(orderDetails[0].orderId, 'Shipped')" class="btn btn-primary mt-3">Mark as Shipped</button>
+          <button *ngIf="orderDetails[0].orderStatus === 'Shipped'" (click)="updateOrderStatus(orderDetails[0].orderId, 'Delivered')" class="btn btn-primary mt-3">Mark as Delivered</button>
+        
           </div>
         </div>
       </div>

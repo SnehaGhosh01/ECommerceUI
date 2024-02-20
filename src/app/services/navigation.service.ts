@@ -131,13 +131,19 @@ export class NavigationService {
     return this.http.get(url, { params, responseType: 'text' });
   }
   
-  forgotPassword(email: string): Observable<any> {
-    return this.http.post<any>(`${this.baseurl2}Auth/ForgotPassword`, { email });
+  forgotPassword(email: string): Observable<string> {
+    return this.http.post(`${this.baseurl2}Auth/ForgotPassword`, { email }, { responseType: 'text' });
   }
 
   updateItemCountPlus(userId: string, productId: string): Observable<any> {
     const url = `${this.baseurl2}ShoppingCart/IncreaseCountByone/${productId}?userId=${userId}`;
     return this.http.put(url, null);
+  }
+  updateOrderStatus(orderId: string, newStatus: string): Observable<any> {
+    const url = `${this.baseurl2}OrderDetails/Vender?id=${orderId}&orderStatus=${newStatus}`;
+
+    // Make the HTTP PUT request to update the order status
+    return this.http.put(url, null, { responseType: 'text' });
   }
 
   updateItemCountMinus(userId: string, productId: string): Observable<any> {

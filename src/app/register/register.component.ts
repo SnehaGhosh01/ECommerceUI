@@ -28,8 +28,9 @@ export class RegisterComponent implements OnInit {
         ],
       ],
       email: ['', [Validators.required, Validators.email]],
-      address: ['', [Validators.required]],
-      mobile: ['', Validators.required],
+      address: ['', [Validators.required,Validators.minLength(10),Validators.pattern('.*\\d{6}.*')]],
+      pin: ['', [Validators.required, Validators.pattern('[0-9]{6}')]],
+      mobile: ['', [Validators.required,Validators.pattern('[0-9]{10}')]], // Removed Validators.required
       pwd: [
         '',
         [
@@ -50,6 +51,7 @@ export class RegisterComponent implements OnInit {
     }, {
       validators: this.passwordMatchValidator('pwd', 'rpwd'),
     });
+    
   }
   
  /* ngOnInit(): void {
@@ -93,7 +95,7 @@ export class RegisterComponent implements OnInit {
     let user: UserRegistration = {
       name: this.Name.value,
       email: this.Email.value,
-      address: this.Address.value,
+      address: `${this.Address.value},-${this.registerForm.get('pin')?.value}`,
       phone_Number: this.Mobile.value,
       password: this.PWD.value,
     };

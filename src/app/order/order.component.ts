@@ -48,8 +48,10 @@ export class OrderComponent implements OnInit {
   }
 
   getUniqueOrderIds(products: any[]): void {
-    this.uniqueOrderIds = new Set(products.map(product => product.orderId));
-    this.uniqueOrderIdsArray = Array.from(this.uniqueOrderIds);
+    if (products) { // Add null check
+      this.uniqueOrderIds = new Set(products.map(product => product.orderId));
+      this.uniqueOrderIdsArray = Array.from(this.uniqueOrderIds);
+    }
   }
 
   groupOrdersByOrderId(): void {
@@ -72,6 +74,7 @@ export class OrderComponent implements OnInit {
       orderId,
       orderDate: orders[0].orderDate,  
       grandTotal: orders[0].grandTotal,  
+      orderStatus: orders[0].orderStatus,
       products: orders,
     }));
   }

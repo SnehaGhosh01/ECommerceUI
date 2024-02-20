@@ -1,4 +1,4 @@
-<form [formGroup]="registerForm" (ngSubmit)="register()">
+<form [formGroup]="registerForm" (ngSubmit)="register()" class="form-container" >
 
   <!-- First Name -->
   <div class="row mb-3">
@@ -45,7 +45,24 @@
     <div class="form-text text-danger" *ngIf="Address.errors?.['required'] && (Address.dirty || Address.touched)">
       Address is Required
     </div>
+    <div class="form-text text-danger" *ngIf="!!Address.errors?.['minlength'] && (Address.dirty || Address.touched)">
+      Address is too short
+    </div>
+    <div class="form-text text-danger" *ngIf="Address.errors?.['pattern'] && (Address.dirty || Address.touched)">
+      Address doesn't contain your pin. Provide a valid pin.
+    </div>
   </div>
+  <div class="mb-3">
+    <label for="pin" class="form-label">PIN</label>
+    <input type="text" class="form-control" id="pin" formControlName="pin">
+    <div class="form-text text-danger" *ngIf="registerForm.get('pin')?.errors?.['required'] && (registerForm.get('pin')?.dirty || registerForm.get('pin')?.touched)">
+      PIN is Required
+    </div>
+    <div class="form-text text-danger" *ngIf="registerForm.get('pin')?.errors?.['pattern'] && (registerForm.get('pin')?.dirty || registerForm.get('pin')?.touched)">
+      PIN must be a 6-digit number.
+    </div>
+  </div>
+  
 
   <!-- Mobile -->
   <div class="mb-3">
@@ -55,6 +72,9 @@
       <!-- Errors -->
       <div class="form-text text-danger" *ngIf="Mobile.errors?.['required'] && (Mobile.dirty || Mobile.touched)">
         Mobile is Required
+      </div>
+      <div class="form-text text-danger" *ngIf="registerForm.get('mobile')?.errors?.['pattern'] && (registerForm.get('mobile')?.dirty || registerForm.get('mobile')?.touched)">
+        Mobile number must be 10 digits.
       </div>
     </div>
 

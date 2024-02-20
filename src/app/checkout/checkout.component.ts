@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationService } from '../services/navigation.service';
 import { UtilityService } from '../services/utility.service';
 import { PlaceOrderDto, ShoppingCartItem } from '../models/models';
@@ -18,7 +18,7 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private navigationService: NavigationService,
-    private utilityService: UtilityService,private router:Router
+    private utilityService: UtilityService,private router:Router,private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -26,13 +26,15 @@ export class CheckoutComponent implements OnInit {
     this.loadCartItems();
 
     // Initialize form controls for checkout
-    this.checkoutForm = new FormGroup({
-      name: new FormControl(''),
-      address: new FormControl(''),
-      phone_Number: new FormControl(''),
-      paymentMethod: new FormControl(''), // Assuming you have a paymentMethod control
-      ewalletPassword: new FormControl(''),
+    this.checkoutForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      address: ['', [Validators.required, Validators.minLength(10)]],
+      phone_Number: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      pin: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
+      paymentMethod: ['', Validators.required],
+      ewalletPassword: [''],
     });
+  
   }
 
   loadAccountDetails() {
@@ -78,11 +80,15 @@ export class CheckoutComponent implements OnInit {
 
   placeOrder(): void {
     const userId = this.utilityService.getUserIdFromLocalStorage();
-
+    const address = this.checkoutForm.get('address')?.value;
+    const pin = this.checkoutForm.get('pin')?.value;
+  
+    // Check if the pin is already included in the address
+    const updatedAddress = address.includes(pin) ? address : `${address} -${pin}`;
     // Prepare payload for placing order
     debugger;
     let payment:PlaceOrderDto={
-      address: this.checkoutForm.get('address')?.value,
+      address:updatedAddress,
       name: this.checkoutForm.get('name')?.value,
       mobile: this.checkoutForm.get('phone_Number')?.value,
       method: this.checkoutForm.get('paymentMethod')?.value,

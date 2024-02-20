@@ -7,6 +7,10 @@
     <div class="checkout-form-div">
       <label class="checkout-form-label">Name:</label>
       <input type="text" class="checkout-form-input" formControlName="name" />
+      <div *ngIf="checkoutForm.get('name')?.invalid && (checkoutForm.get('name')?.dirty || checkoutForm.get('name')?.touched)" class="error-message">
+        <span *ngIf="checkoutForm.get('name')?.errors?.['required']">Name is required.</span>
+        <span *ngIf="checkoutForm.get('name')?.errors?.['minlength']">Name must be at least 2 characters long.</span>
+      </div>
     </div>
 
     <div class="checkout-form-div">
@@ -16,6 +20,10 @@
         class="checkout-form-input"
         formControlName="address"
       />
+      <div *ngIf="checkoutForm.get('address')?.invalid && (checkoutForm.get('address')?.dirty || checkoutForm.get('address')?.touched)" class="error-message">
+        <span *ngIf="checkoutForm.get('address')?.errors?.['required']">Address is required.</span>
+        <span *ngIf="checkoutForm.get('address')?.errors?.['minlength']">Address must be at least 10 characters long.</span>
+      </div>
     </div>
 
     <div class="checkout-form-div">
@@ -25,6 +33,18 @@
         class="checkout-form-input"
         formControlName="phone_Number"
       />
+      <div *ngIf="checkoutForm.get('phone_Number')?.invalid && (checkoutForm.get('phone_Number')?.dirty || checkoutForm.get('phone_Number')?.touched)" class="error-message">
+        <span *ngIf="checkoutForm.get('phone_Number')?.errors?.['required']">Mobile is required.</span>
+        <span *ngIf="checkoutForm.get('phone_Number')?.errors?.['pattern']">Mobile must be 10 digits.</span>
+      </div>
+    </div>
+    <div class="checkout-form-div">
+      <label class="checkout-form-label">PIN:</label>
+      <input type="text" class="checkout-form-input" formControlName="pin" />
+      <div *ngIf="checkoutForm.get('pin')?.invalid && (checkoutForm.get('pin')?.dirty || checkoutForm.get('pin')?.touched)" class="error-message">
+        <span *ngIf="checkoutForm.get('pin')?.errors?.['required']">PIN is required.</span>
+        <span *ngIf="checkoutForm.get('pin')?.errors?.['pattern']">PIN must be 6 digits.</span>
+      </div>
     </div>
 
     <div class="checkout-form-div">
