@@ -16,20 +16,24 @@
                 <button type="button" class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
                     Categories
                 </button>
-                <ul class="dropdown-menu fs-5">
+                <ul class="dropdown-menu fs-5" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()">
                     <ng-container *ngFor="let item of navigationList; let i = index;">
-                        <li class="text-center fw-bold">{{item.category | titlecase}}</li>
-                        <li *ngFor="let subcategory of item.subcategories" [style.cursor]="'pointer'">
-                            <a class="dropdown-item" OpenProducts
-                               [category]="{id: 0, 'category': item.category, 'subCategory': subcategory}">
-                                {{subcategory | titlecase}}
+                      <li class="text-center fw-bold" (mouseenter)="activeCategory = item" (mouseleave)="activeCategory = null">
+                        {{ item.category | titlecase }}
+                        <ul class="dropdown-menu-sub" *ngIf="showDropdown && activeCategory === item">
+                          <li *ngFor="let subcategory of item.subcategories" [style.cursor]="'pointer'">
+                            <a class="dropdown-item" OpenProducts [category]="{ id: 0, 'category': item.category, 'subCategory': subcategory }">
+                              {{ subcategory | titlecase }}
                             </a>
-                        </li>
-                        <li *ngIf="i !== navigationList.length - 1">
-                            <hr class="dropdown-divider">
-                        </li>
+                          </li>
+                        </ul>
+                      </li>
+                      <li *ngIf="i !== navigationList.length - 1">
+                        <hr class="dropdown-divider">
+                      </li>
                     </ng-container>
-                </ul>
+                  </ul>
+                  
             </div>
         </div>
 

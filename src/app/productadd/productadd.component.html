@@ -4,7 +4,7 @@
   <button type="button" class="btn btn-success add-button" (click)="addProductForm()">
     Add Product
   </button>
-  <div class="container form-container" *ngIf="isEditMode && !selectedProduct">
+  <div class="container form-container" *ngIf="!isEditMode && !selectedProduct && isAddMode">
     <h2>Add Product</h2>
     <form (ngSubmit)="addProduct()">
       <!-- Input fields for product properties -->

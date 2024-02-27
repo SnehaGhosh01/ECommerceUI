@@ -84,7 +84,7 @@ import { MatDialogModule } from '@angular/material';
         tokenGetter: () => {
           return localStorage.getItem('user');
         },
-        allowedDomains: ['localhost:7149'],
+        allowedDomains: ['localhost:5073'],
       },
     }),
   ],

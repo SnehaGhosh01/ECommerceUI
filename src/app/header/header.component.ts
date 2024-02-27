@@ -27,8 +27,10 @@ export class HeaderComponent implements OnInit {
   container!: ViewContainerRef;
   cartItems: number = 0;
   cartcurrentvalue:number=0;
-
   navigationList: NavigationItem[] = [];
+  showDropdown: boolean = false;
+  activeCategory: NavigationItem | null = null;
+  
   constructor(
     private navigationService: NavigationService,
     public utilityService: UtilityService, private router: Router
@@ -55,7 +57,38 @@ export class HeaderComponent implements OnInit {
     });
    
   }
- 
+  fetchCategoryList(): void {
+    // Get Category List
+    this.navigationService.getCategoryList().subscribe((list: Category[]) => {
+      this.navigationList = [];
+      for (let item of list) {
+        let present = false;
+        for (let navItem of this.navigationList) {
+          if (navItem.category === item.category) {
+            navItem.subcategories.push(item.subCategory);
+            present = true;
+          }
+        }
+        if (!present) {
+          this.navigationList.push({
+            category: item.category,
+            subcategories: [item.subCategory],
+          });
+        }
+      }
+    });
+  }
+  openDropdown(): void {
+    
+    this.showDropdown = true;
+    // Fetch category list when hovering over a category button
+    this.fetchCategoryList();
+  }
+
+  closeDropdown(): void {
+    this.activeCategory = null;
+    this.showDropdown = false;
+  }
   openModal(name: string) {
     this.container.clear();
     let componentType!: Type<any>;

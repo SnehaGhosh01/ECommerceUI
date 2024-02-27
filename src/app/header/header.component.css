@@ -43,3 +43,17 @@
 .custom-bg {
     background-color: black;
 }
+.dropdown-menu-sub {
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+.dropdown-menu.fs-5 li {
+  list-style: none; /* Remove default list styles */
+  padding: 0; /* Optionally remove padding */
+  margin: 0; /* Optionally remove margin */
+}
+
+.dropdown-menu.fs-5 li a {
+  display: flex; /* Use flexbox */
+  align-items: center; /* Center vertically */
+}

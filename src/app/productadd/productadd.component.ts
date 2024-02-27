@@ -19,15 +19,30 @@ export class ProductaddComponent implements OnInit {
   selectedSubcategory: string | null = null;
   filteredProducts: Product3[] = [];
   isAddMode:boolean=false;
+  categorys:any[]=[];
   selectedIndex: number | null = null;
 
   constructor(private navigationService: NavigationService) { }
 
   ngOnInit(): void {
     this.getAllProducts();
-    
+    this.getAllCategories();
   }
-
+  getAllCategories(): void {
+    this.navigationService.getAllCategories()
+      .subscribe(
+        response => {
+          this.categorys = response.map((item: any) => ({
+            id: item.id,
+            category: item.name,
+            subCategory: item.subCategory
+          }));
+        },
+        error => {
+          console.error('Error getting categories:', error);
+        }
+      );
+  }
   getAllProducts(): void {
     this.navigationService.getAllProducts()
       .subscribe(
@@ -44,14 +59,15 @@ export class ProductaddComponent implements OnInit {
 
   getCategoryNames(): string[] {
     // Extract unique category names
-    return Array.from(new Set(this.products.map(product => product.categoryName)));
+    return Array.from(new Set(this.categorys.map(category => category.category)));
   }
 
   getSubcategoryNames(category: string): string[] {
     // Extract unique subcategory names for a given category
-    const productsInCategory = this.products.filter(product => product.categoryName === category);
-    return Array.from(new Set(productsInCategory.map(product => product.subCategoryName)));
+    const productsInCategory = this.categorys.filter(product => product.category === category);
+    return Array.from(new Set(productsInCategory.map(product => product.subCategory)));
   }
+  
 
   filterProducts(): void {
     if (this.selectedCategory && this.selectedSubcategory) {
@@ -93,12 +109,12 @@ export class ProductaddComponent implements OnInit {
  
   cancelAdd(): void {
     this.isAddMode = false; 
-    this.isEditMode=!this.isEditMode;// Turn off add mode
+    this.cancelEdit(); // Turn off add mode
     //this.newProduct = new Product4(); // Reset newProduct
   }
 addProductForm(){
   this.isAddMode = !this.isAddMode;
-  this.isEditMode=!this.isEditMode;
+ this.cancelEdit();
 }
   addProduct(): void {
     

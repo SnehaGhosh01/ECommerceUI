@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Subject, window } from 'rxjs';
-import { Product2, ShoppingCartItem, User } from '../models/models';
+import { Product2, Product3, ShoppingCartItem, User } from '../models/models';
 import { NavigationService } from './navigation.service';
 import { Router } from '@angular/router';
 
